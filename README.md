@@ -1,5 +1,9 @@
 # HTML Effectiveness Skill
 
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE.txt)
+[![GitHub Stars](https://img.shields.io/github/stars/YardonYan/html-skill-effectiveness?style=social)](https://github.com/YardonYan/html-skill-effectiveness)
+[![GitHub repo](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
+
 > 让 AI 生成的不再是"扫一眼就跳过"的文档，而是"真正愿意读"的交互式 HTML 页面。
 
 **作者**: [Yardon](https://github.com/YardonYan) | **创作时间**: 2026年5月  
