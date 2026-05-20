@@ -1,95 +1,381 @@
-<!doctype html>
-<html -CN data-theme=light >
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>HTML Effectiveness - Markdown vs HTML Comparison</title>
-<style>
-:root{--ivory:#FAF9F5;--paper:#FFF;--slate:#141413;--clay:#D97757;--clay-d:#B85C3E;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;--sky:#6A8CAF;--g100:#F0EEE6;--g200:#E6E3DA;--g300:#D1CFC5;--g500:#87867F;--g700:#3D3D3A;--serif:ui-serif,Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Monaco,monospace;--r12:12px;--r8:8px;--r999:999px}[data-theme=dark]{--ivory:#0D1117;--paper:#161B22;--slate:#C9D1D9;--clay:#58A6FF;--clay-d:#79C0FF;--oat:#30363D;--olive:#7EE787;--rust:#F85149;--g100:#21262D;--g200:#30363D;--g300:#484F58;--g500:#8B949E;--g700:#C9D1D9}*{box-sizing:border-box;margin:0;padding:0}body{transition:background .35s,color .25s;font-family:var(--sans);background:var(--ivory);color:var(--g700);line-height:1.6;-webkit-font-smoothing:antialiased;padding:40px 20px 120px;transition:background .25s,color .25s}.page{max-width:1180px;margin:0 auto}.hero{text-align:center;padding:48px 0 64px}.hero .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--g500);margin-bottom:16px}.hero h1{font-family:var(--serif);font-size:clamp(36px,5.4vw,58px);font-weight:500;letter-spacing:-.018em;color:var(--slate);line-height:1.15;margin-bottom:16px}.hero h1 em{font-style:italic}.hero p.sub{font-size:clamp(16px,2vw,19px);color:var(--g500);max-width:640px;margin:0 auto 40px;line-height:1.6}.hero-fig{display:flex;justify-content:center;align-items:center;gap:32px;margin:0 auto;max-width:500px}.hero-panel{width:160px;height:120px;border-radius:var(--r8);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;position:relative}.hero-panel.md{background:var(--g100);border:1.5px solid var(--g300);transform:rotate(-2.5deg);color:var(--g500)}.hero-panel.html{background:var(--paper);border:1.5px solid var(--clay);box-shadow:0 8px 24px rgba(217,119,87,.12);transform:rotate(1.5deg);color:var(--clay)}.hero-panel .label{position:absolute;top:-10px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--ivory);padding:0 6px;font-weight:600}.bar{width:60%;height:4px;border-radius:2px;margin:3px 0}.md .bar{background:var(--g200)}.html .bar{background:var(--clay)}.hero-arrow{font-size:28px;color:var(--g300)}.top-bar{display:flex;justify-content:flex-end;align-items:center;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--g200);margin-bottom:32px}.top-btn{font-family:var(--sans);font-size:13px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r999);background:var(--paper);color:var(--g700);cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .25s}.top-btn:hover{border-color:var(--clay);color:var(--clay)}section.scene{margin-bottom:64px;scroll-margin-top:24px}.scene-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;padding-bottom:8px;border-bottom:1.5px solid var(--g200)}.scene-header .idx{font-family:var(--mono);font-size:13px;color:var(--g500);margin-right:12px}.scene-header h2{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--slate)}.scene-header .count{font-family:var(--mono);font-size:11px;color:var(--g500);letter-spacing:.06em}.scene-desc{font-size:14px;color:var(--g500);line-height:1.6;margin-bottom:24px;max-width:760px}.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.card-grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.card-grid.c1{grid-template-columns:1fr}.comp-card{background:var(--paper);border:1.5px solid var(--g300);border-radius:var(--r12);overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}.comp-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(20,20,19,.1);border-color:var(--slate)}.comp-card .card-title{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--slate);padding:18px 20px 8px}.comp-card .card-subtitle{font-size:12px;color:var(--g500);padding:0 20px 14px}.comp-card .split{display:grid;grid-template-columns:1fr 1fr}.comp-card .md-panel{background:var(--g100);padding:14px;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--g700);min-height:140px;white-space:pre-wrap;word-break:break-word}.comp-card .panel-label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;font-family:var(--sans)}.comp-card .md-panel .panel-label{color:var(--g500)}.comp-card .html-panel .panel-label{color:var(--clay)}.comp-card .html-panel{background:var(--paper);padding:14px;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}.comp-card .insight{padding:10px 20px 16px;font-size:12px;color:var(--g500);border-top:1px solid var(--g200)}.comp-card .insight strong{color:var(--clay)}.badge{display:inline-block;padding:2px 8px;border-radius:var(--r999);font-size:10px;font-family:var(--mono)}.badge.green{background:#e6f0da;color:#4a5e3a}.badge.red{background:#f5d6d0;color:#8a2e24}.inline-comparison{display:flex;gap:10px;width:100%}.inline-card{flex:1;border:1px solid var(--g200);border-radius:var(--r8);padding:10px;font-size:10px;background:#FDFCF9}.inline-card h4{font-size:11px;font-weight:600;color:var(--slate);margin-bottom:6px}.inline-card ul{list-style:none;padding:0}.inline-card li{display:flex;align-items:center;gap:4px;font-size:10px;padding:2px 0;color:var(--g700)}.inline-card .rec{margin-top:6px;font-size:10px;color:var(--olive);font-weight:600}.color-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}.color-swatch{aspect-ratio:1;border-radius:6px;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-family:var(--mono);text-shadow:0 1px 3px rgba(0,0,0,.3)}.v-timeline{display:flex;flex-direction:column;width:100%;position:relative;padding-left:20px}.v-timeline::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--g200)}.tl-item{position:relative;padding:6px 0 6px 12px;font-size:10px;color:var(--g700)}.tl-item::before{content:"";position:absolute;left:-18px;top:10px;width:8px;height:8px;border-radius:50%;border:2px solid var(--clay);background:var(--paper)}.btn-row{display:flex;gap:8px;flex-wrap:wrap;width:100%}.btn-demo{padding:6px 14px;border-radius:var(--r8);border:1.5px solid var(--g300);font-size:11px;cursor:default;font-family:var(--sans);background:var(--paper)}.btn-demo.primary{background:var(--clay);color:#fff;border-color:var(--clay)}.health{display:flex;gap:8px;flex-wrap:wrap;width:100%}.health-pill{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--r999);font-size:10px;font-family:var(--mono)}.health-pill .dot{width:6px;height:6px;border-radius:50%}.health-pill.on-track{background:#e6f0da;color:#4a5e3a}.health-pill.on-track .dot{background:var(--olive)}.health-pill.at-risk{background:#faead0;color:#8a6a20}.health-pill.at-risk .dot{background:var(--clay)}.kanban-mini{display:flex;gap:6px;width:100%}.kanban-col{flex:1;background:var(--g100);border:1px solid var(--g200);border-radius:var(--r8);padding:6px}.kanban-col .col-title{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--g500);margin-bottom:4px;text-align:center}.kanban-card{background:var(--paper);border:1px solid var(--g200);border-radius:4px;padding:4px 6px;font-size:9px;margin-bottom:4px;color:var(--g700)}.mini-bar{display:flex;align-items:flex-end;gap:6px;height:50px;width:100%}.mini-bar .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}.mini-bar .bar-fill{width:100%;max-width:24px;border-radius:3px 3px 0 0}.mini-bar .bar-label{font-size:8px;color:var(--g500);margin-top:3px}.sparkline{display:flex;align-items:flex-end;gap:2px;height:24px;width:100%}.sparkline .sp{flex:1;border-radius:1px 1px 0 0;background:var(--clay);min-height:2px}.toggle-switch{position:relative;width:36px;height:20px;border-radius:10px;background:var(--g300);display:inline-block}.toggle-switch.on{background:var(--olive)}.toggle-switch .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.15);transition:transform .25s}.toggle-switch.on .knob{transform:translateX(16px)}.form-demo{width:100%}.form-demo input{width:100%;padding:6px 8px;border:1.5px solid var(--g300);border-radius:var(--r8);font-size:11px;font-family:var(--sans);background:var(--paper);color:var(--g700);outline:none}.form-demo input:focus{border-color:var(--clay)}.form-demo .hint{font-size:9px;color:var(--g500);margin-top:3px}.form-demo .hint.error{color:var(--rust)}.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--olive);animation:pulse 1.5s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.tabs-mini{width:100%}.tabs-mini .tab-headers{display:flex;border-bottom:1.5px solid var(--g200)}.tabs-mini .tab-h{padding:4px 10px;font-size:10px;cursor:default;border-bottom:2px solid transparent;color:var(--g500)}.tabs-mini .tab-h.active{color:var(--clay);border-bottom-color:var(--clay)}.tabs-mini .tab-body{padding:8px 0;font-size:10px;color:var(--g700)}footer{margin-top:80px;padding:40px 0;border-top:1.5px solid var(--g200);text-align:center}footer p{font-size:14px;color:var(--g500);line-height:1.6}footer a{color:var(--clay);text-decoration:none;font-weight:500}footer a:hover{text-decoration:underline}@media(max-width:920px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){body{padding:24px 12px 80px}.card-grid,.card-grid.c2{grid-template-columns:1fr}.comp-card .split{grid-template-columns:1fr}.hero-panel{width:120px;height:90px;font-size:11px}.hero-fig{gap:16px}.top-bar{justify-content:center}}@media(prefers-reduced-motion:reduce){*,::before,::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Effectiveness - Pattern Showcase</title>
+    <style>
+        :root {
+            --bg: #FAF9F5;
+            --surface: #FFFFFF;
+            --fg: #141413;
+            --muted: #87867F;
+            --border: #D1CFC5;
+            --accent: #D97757;
+            --accent-soft: color-mix(in oklch, var(--accent) 14%, transparent);
+            --fg-soft: color-mix(in oklch, var(--fg) 6%, transparent);
+            --font-display: 'Iowan Old Style', 'Charter', Georgia, 'Times New Roman', serif;
+            --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-mono: ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+            --radius-panel: 12px;
+            --radius-row: 8px;
+            --radius-pill: 999px;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page { max-width: 1200px; margin: 0 auto; padding: 56px 24px 96px; }
+        h1 { font-family: var(--font-display); font-size: clamp(44px, 6vw, 76px); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 16px; }
+        h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.015em; margin: 64px 0 24px; }
+        h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin: 32px 0 12px; }
+        .subtitle { color: var(--muted); font-size: 18px; margin-bottom: 48px; }
+        .pattern-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; margin-top: 32px; }
+        .pattern-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-panel);
+            padding: 28px;
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+        .pattern-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(20,20,19,.10);
+            border-color: var(--fg);
+        }
+        .pattern-card .number {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .pattern-card h3 { margin: 0 0 8px; font-size: 20px; }
+        .pattern-card p { color: var(--muted); font-size: 14px; margin: 0; }
+        .demo-section {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-panel);
+            padding: 32px;
+            margin-top: 24px;
+        }
+        .approaches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media (max-width: 920px) { .approaches { grid-template-columns: 1fr; } }
+        .approach {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-row);
+            padding: 20px;
+        }
+        .approach.recommended { border-color: var(--fg); }
+        .badge {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            border-radius: var(--radius-pill);
+            background: var(--bg);
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .badge.recommended { background: var(--fg); color: var(--bg); }
+        .diff-block {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-row);
+            overflow: hidden;
+            margin: 16px 0;
+        }
+        .diff-line {
+            display: flex;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.6;
+            padding: 2px 16px;
+        }
+        .diff-line.add { background: #F0F7EC; border-left: 3px solid #788C5D; }
+        .diff-line.del { background: #FDF2F0; border-left: 3px solid #B04A3F; }
+        .health {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            background: #E8F0E0;
+            color: #788C5D;
+        }
+        .health::before {
+            content: "";
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #788C5D;
+        }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .metric {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-row);
+            padding: 20px;
+        }
+        .metric .value {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        .metric .delta { font-family: var(--font-mono); font-size: 13px; color: #788C5D; }
+        .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+        .swatch { border-radius: var(--radius-row); overflow: hidden; border: 1.5px solid var(--border); }
+        .swatch .color { height: 60px; }
+        .swatch .label { padding: 8px; font-family: var(--font-mono); font-size: 11px; background: var(--surface); }
+        .cta {
+            display: inline-block;
+            background: var(--fg);
+            color: var(--bg);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            margin-top: 32px;
+            transition: transform 150ms ease;
+        }
+        .cta:hover { transform: translateY(-2px); }
+        footer { margin-top: 96px; padding-top: 32px; border-top: 1.5px solid var(--border); color: var(--muted); font-size: 13px; }
+    </style>
 </head>
-<body lang=en data-theme=light ><div class=page id=top>
-<div class=top-bar><button class=top-btn id=themeToggle aria-label="Toggle theme">Claude Code</div>
-<header class=hero>
-<div class=eyebrow i18n-zh>The Unreasonable Effectiveness of HTML</div>
-<div class=eyebrow>Companion to the blog post</div>
-<h1>The unreasonable <em>effectiveness</em> of HTML</h1>
-<p class=sub i18n-zh>Twenty self-contained scenarios showing why AI should use HTML instead of walls of Markdown.</p>
-<p class=sub>Twenty self-contained scenarios showing why AI should replace walls of Markdown with HTML.</p>
-<div class=hero-fig>
-<div class="hero-panel md"><span class=label>.md<div class=bar></div><div class="bar" style=width:40%></div><div class="bar" style=width:50%></div><span style="font-size:9px;color:var(--g500)">Plain Text</div>
-<div class=hero-arrow>→</div>
-<div class="hero-panel html"><span class=label>.html<div class=bar></div><div class="bar" style=width:70%;opacity:.6></div><span style="font-size:9px;color:var(--clay)">Visual</div>
-</div>
-</header>
-<section class="scene" id="exploration"><div class="scene-header"><span class="idx">01<h2><span class="i18n-zh">Exploration & Planning</h2><span class="count">3 demos</div><div class="scene-desc i18n-zh">When you are not sure what you want, have AI lay out multiple options side-by-side instead of processing paragraphs in your head.</div><div class="card-grid"><div class="comp-card"><div class="card-title"><span class="i18n-zh">Tech Stack Comparison</div><div class="card-subtitle i18n-zh">Microservices vs Monolithic</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown## Option A: Microservices
+<body>
+    <div class="page">
+        <h1>HTML Effectiveness</h1>
+        <p class="subtitle">11 patterns for turning AI output into visual documents people actually read</p>
 
-Pros:
-- Scalable
-- Independent deploy
+        <h2>Pattern Catalog</h2>
+        <div class="pattern-grid">
+            <div class="pattern-card">
+                <div class="number">01</div>
+                <h3>Side-by-Side Comparison</h3>
+                <p>Compare approaches, designs, or options in a grid layout with highlighted recommendations.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">02</div>
+                <h3>Annotated Diff</h3>
+                <p>Code reviews with color-coded changes, severity tags, and margin notes.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">03</div>
+                <h3>Module Map</h3>
+                <p>Architecture diagrams with SVG boxes, arrows, and interactive tooltips.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">04</div>
+                <h3>Living Design System</h3>
+                <p>Color swatches, typography scales, spacing tokens, and component catalogs.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">05</div>
+                <h3>Slide Deck</h3>
+                <p>Full-viewport presentations with scroll-snap, keyboard navigation, presenter mode, and 36 themes.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">06</div>
+                <h3>Interactive Explainer</h3>
+                <p>Teaching concepts with collapsible sections, tabbed code, and live demos.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">07</div>
+                <h3>Status Report</h3>
+                <p>Weekly updates with health pills, mini charts, and risk tables.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">08</div>
+                <h3>Flowchart</h3>
+                <p>Process diagrams with clickable nodes, detail panels, and SVG paths.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">09</div>
+                <h3>SVG Illustration</h3>
+                <p>Self-contained figures with reusable CSS classes for strokes and fills.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">10</div>
+                <h3>Custom Editor</h3>
+                <p>Triage boards with drag-and-drop, toggle switches, and export functionality.</p>
+            </div>
+            <div class="pattern-card">
+                <div class="number">11</div>
+                <h3>Dashboard</h3>
+                <p>Metrics and KPIs with sparklines, delta indicators, and color-coded status.</p>
+            </div>
+            <div class="pattern-card" style="border-color: var(--accent);">
+                <div class="number" style="color: var(--accent);">12 ✦ NEW</div>
+                <h3>Live Artifact</h3>
+                <p>Refreshable dashboards with template+data structure, auto-refresh, and real-time data binding.</p>
+            </div>
+            <div class="pattern-card" style="border-color: var(--accent);">
+                <div class="number" style="color: var(--accent);">13 ✦ NEW</div>
+                <h3>Frame Effects</h3>
+                <p>Visual moments — glitch titles, liquid backgrounds, light leaks, and dramatic hero effects.</p>
+            </div>
+        </div>
 
-Cons:
-- High complexity
-- High ops cost
+        <h2>Live Demos</h2>
 
-**Recommended: Option A**</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="inline-comparison"><div class="inline-card" style="border-color:var(--clay);box-shadow:0 0 0 1px var(--clay)"><h4 style="color:var(--clay)">✅ Option A · Microservices</h4><ul><li>🟢 Scalable</li><li>🟢 Independent deploy</li><li style="color:var(--g500)">🔴 High complexity</li><li style="color:var(--g500)">🔴 High ops cost</li></ul><div class="rec">★ Recommended</div></div><div class="inline-card"><h4 style="color:var(--g500)">Option B · Monolithic</h4><ul><li>🟢 Simple & intuitive</li><li>🟢 Quick to build</li><li style="color:var(--g500)">🔴 Hard to scale</li><li style="color:var(--g500)">🔴 Code coupling</li></ul></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Markdown uses lists for comparison; HTML uses spatial layout for instant clarity</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Visual Design Exploration</div><div class="card-subtitle i18n-zh">Color palette & component direction</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownPrimary: #D97757
-Accent: #788C5D
-Danger: #B04A3F
-Desc: Warm earth tones</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="color-grid"><div class="color-swatch" style="background:#D97757">#D97757</div><div class="color-swatch" style="background:#788C5D">#788C5D</div><div class="color-swatch" style="background:#B04A3F">#B04A3F</div><div class="color-swatch" style="background:#6A8CAF">#6A8CAF</div><div class="color-swatch" style="background:#E3DACC;color:#666">#E3DACC</div><div class="color-swatch" style="background:#141413">#141413</div></div><div style="font-size:9px;color:var(--g500);margin-top:4px">Warm earth tones</div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Visual decisions need visual context  seeing colors beats reading hex values</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Implementation Roadmap</div><div class="card-subtitle i18n-zh">3-month phased plan</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown## Phase 1 (Month 1)
-- Foundation
+        <h3>Pattern 1: Side-by-Side Comparison</h3>
+        <div class="demo-section">
+            <div class="approaches">
+                <div class="approach">
+                    <span class="badge">Approach A</span>
+                    <h3>Client Render</h3>
+                    <ul><li>Fast navigation</li><li>Rich interactions</li></ul>
+                </div>
+                <div class="approach recommended">
+                    <span class="badge recommended">Recommended</span>
+                    <h3>Static Generation</h3>
+                    <ul><li>Fast load</li><li>Great SEO</li><li>Low cost</li></ul>
+                </div>
+                <div class="approach">
+                    <span class="badge">Approach C</span>
+                    <h3>Server Components</h3>
+                    <ul><li>Best of both</li><li>Streaming</li></ul>
+                </div>
+            </div>
+        </div>
 
-## Phase 2 (Month 2)
-- Core features
+        <h3>Pattern 2: Annotated Diff</h3>
+        <div class="demo-section">
+            <div class="diff-block">
+                <div class="diff-line del"><span style="color:var(--muted);width:40px;display:inline-block;text-align:right;padding-right:12px;">10</span>- const token = jwt.sign(payload, secret)</div>
+                <div class="diff-line add"><span style="color:var(--muted);width:40px;display:inline-block;text-align:right;padding-right:12px;">10</span>+ const token = jwt.sign(payload, secret, { expiresIn: '1h' })</div>
+            </div>
+            <span style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;background:#B04A3F;color:#fff;padding:2px 8px;border-radius:999px;">Critical</span>
+            <span style="margin-left:8px;">Missing TTL — security risk</span>
+        </div>
 
-## Phase 3 (Month 3)
-- Launch</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="v-timeline"><div class="tl-item"><strong style="color:var(--clay)">Q1 · Month 1</strong><br>Foundation ● Tech selection</div><div class="tl-item"><strong style="color:var(--olive)">Q1 · Month 2</strong><br>Core features ● Milestone M1</div><div class="tl-item"><strong style="color:var(--slate)">Q1 · Month 3</strong><br>Launch ● 🚀 Go</div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Timelines communicate temporal information better than lists</div></div></div></section><section class="scene" id="code-review"><div class="scene-header"><span class="idx">02<h2><span class="i18n-zh">Code Review</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown code blocks are static; HTML supports interactive highlighting. Diffs are spatial information  HTML preserves that spatial relationship.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">PR Review Summary</div><div class="card-subtitle">Diff with annotations</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown```diff
-- const token = jwt.sign(payload, secret)
-+ const token = jwt.sign(payload, secret, { expiresIn: '1h' })
-```
-Consider adding TTL</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;font-family:var(--mono);font-size:10px"><div style="background:#f5d6d0;padding:4px 8px;border-radius:4px 4px 0 0;color:#8a2e24">- const token = jwt.sign(payload, secret)</div><div style="background:#e6f0da;padding:4px 8px;border-radius:0 0 4px 4px;color:#4a5e3a;border-left:3px solid var(--olive)">+ const token = jwt.sign(payload, secret, { expiresIn: '1h' })</div><div style="margin-top:6px;display:flex;gap:4px"><span class="badge red">critical<span style="font-family:var(--sans);font-size:10px;color:var(--g500)">Missing TTL  security risk</div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">HTML preserves diff spatial relationships with color-coded severity labels</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Code Architecture Diagram</div><div class="card-subtitle i18n-zh">AuthService dependency graph</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownAuthService dependencies UserService  &  TokenManager。</div><div class="html-panel"><span class="panel-label">🎨 HTML<svg viewBox="0 0 200 110" style="width:100%;max-width:200px;font-family:var(--mono)"><rect x="2" y="2" width="70" height="28" rx="5" fill="var(--clay)" opacity=".12" stroke="var(--clay)" stroke-width="1.2"/><text x="37" y="20" font-size="7" text-anchor="middle" fill="var(--clay)">AuthService</text><rect x="2" y="80" width="65" height="24" rx="4" fill="var(--olive)" opacity=".12" stroke="var(--olive)" stroke-width="1.2"/><text x="35" y="95" font-size="6" text-anchor="middle" fill="var(--olive)">UserService</text><rect x="133" y="2" width="65" height="24" rx="4" fill="var(--sky)" opacity=".12" stroke="var(--sky)" stroke-width="1.2"/><text x="166" y="17" font-size="6" text-anchor="middle" fill="var(--sky)">TokenManager</text><rect x="133" y="80" width="60" height="24" rx="4" fill="var(--oat)" opacity=".3" stroke="var(--g300)" stroke-width="1"/><text x="163" y="95" font-size="6" text-anchor="middle" fill="var(--g500)">UserDB</text><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10" fill="var(--g500)"/></marker></defs><line x1="37" y1="30" x2="37" y2="78" stroke="var(--g500)" stroke-width="1" marker-end="url(#arr)" stroke-dasharray="3,2"/><line x1="168" y1="26" x2="168" y2="78" stroke="var(--g500)" stroke-width="1" marker-end="url(#arr)" stroke-dasharray="3,2"/><line x1="37" y1="15" x2="132" y2="15" stroke="var(--g500)" stroke-width="1" marker-end="url(#arr)"/></svg></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Architecture is a diagram  SVG arrows make dependencies visible</div></div></div></section><section class="scene" id="architecture"><div class="scene-header"><span class="idx">03<h2><span class="i18n-zh">Architecture Design</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown can't express spatial relationships  colors need to be seen, component states need to be experienced.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">Design System Tokens</div><div class="card-subtitle i18n-zh">Color palette & values</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown- Primary: #D97757
-- Success: #788C5D
-- Warning: #B04A3F
-- Text: #141413</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="color-grid"><div class="color-swatch" style="background:#D97757">#D97757</div><div class="color-swatch" style="background:#788C5D">#788C5D</div><div class="color-swatch" style="background:#B04A3F">#B04A3F</div><div class="color-swatch" style="background:#6A8CAF">#6A8CAF</div><div class="color-swatch" style="background:#E3DACC;color:#666">#E3DACC</div><div class="color-swatch" style="background:#141413">#141413</div></div><div style="font-size:9px;color:var(--g500);margin-top:4px">Primary · Success · Warning · Info · Text</div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Colors need to be seen  swatches convey far more density than hex lists</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Component Variants</div><div class="card-subtitle i18n-zh">Button state previews</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownPrimary button has default, hover, and disabled states.</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="btn-row" style="flex-direction:column;gap:6px"><div style="font-size:9px;color:var(--g500)">Primary:</div><div class="btn-row"><div class="btn-demo primary">Default</div><div class="btn-demo primary" style="opacity:.8">Hover</div><div class="btn-demo primary" style="opacity:.4">Disabled</div></div><div style="font-size:9px;color:var(--g500);margin-top:4px">Outline:</div><div class="btn-row"><div class="btn-demo outline">Default</div><div class="btn-demo outline" style="background:var(--g100)">Hover</div><div class="btn-demo outline" style="opacity:.4">Disabled</div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Component states need to be experienced  rendering beats description</div></div></div></section><section class="scene" id="prototype"><div class="scene-header"><span class="idx">04<h2><span class="i18n-zh">Prototype Interaction</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown is completely non-interactive. Interaction needs interaction; flow needs flow.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">Form Validation</div><div class="card-subtitle i18n-zh">Real-time input validation</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownEmail required, password min 8 chars, must contain uppercase & number.</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="form-demo"><input type="email" placeholder="Enter email" style="margin-bottom:6px" value="user@example.com"><div class="hint">✓ Valid email</div><input type="password" placeholder="Password" style="margin-top:8px;margin-bottom:4px" value="abc123"><div class="hint error">✗ Min 8 chars, need uppercase</div><div style="margin-top:8px;display:flex;gap:2px;align-items:center"><span style="font-size:9px;color:var(--g500)">Passwordstrength：<div style="flex:1;height:4px;background:var(--g200);border-radius:2px;overflow:hidden"><div style="width:35%;height:100%;background:var(--rust);border-radius:2px"></div></div><span style="font-size:9px;color:var(--rust)">Weak</div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Forms need interaction to understand  real-time validation is the experience</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Shopping Cart</div><div class="card-subtitle i18n-zh">Interactive shopping flow</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownClick addShopping Cart，qty+1。qty=0 auto-delete。</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;font-size:10px"><div style="display:flex;justify-content:space-between;padding:4px 0"><span>Design System 101<span style="color:var(--g500)">¥99.00</div><div style="display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid var(--g200)"><span>React Advanced Patterns<span style="color:var(--g500)">¥128.00</div><div style="display:flex;justify-content:space-between;padding:4px 0 0;border-top:1px solid var(--g200)"><span style="font-weight:600">Total<span style="color:var(--clay);font-weight:600">¥227.00</div><div style="margin-top:8px;display:flex;gap:4px"><div style="display:flex;align-items:center;gap:4px;border:1px solid var(--g200);border-radius:4px;padding:2px 6px"><span style="cursor:default;opacity:.5">−<span>1<span style="cursor:default">+</div><span class="badge green">In Stock</div><div style="margin-top:8px"><div style="padding:6px 0;background:var(--clay);color:#fff;border-radius:var(--r8);font-size:10px;text-align:center;font-weight:600">Checkout</div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Shopping Cart core is workflowHTML  users see not imagine</div></div></div></section><section class="scene" id="data-chart"><div class="scene-header"><span class="idx">05<h2><span class="i18n-zh">Data Charts</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown has no charting capability  trends need curves, monitoring needs real-time feel.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">Sales Trend</div><div class="card-subtitle i18n-zh">Quarterly sales bar chart</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown| Month | Sales |
-|-------|-------|
-| Jan | 120K  |
-| Feb | 135K  |
-| Mar | 145K  |
-| Apr | 160K  |
-| May | 158K  |
-| Jun | 175K  |</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="mini-bar"><div class="bar-col"><div class="bar-fill" style="height:55%;background:var(--clay)"></div><div class="bar-label">Jan</div></div><div class="bar-col"><div class="bar-fill" style="height:62%;background:var(--clay)"></div><div class="bar-label">Feb</div></div><div class="bar-col"><div class="bar-fill" style="height:68%;background:var(--clay)"></div><div class="bar-label">Mar</div></div><div class="bar-col"><div class="bar-fill" style="height:76%;background:var(--clay)"></div><div class="bar-label">Apr</div></div><div class="bar-col"><div class="bar-fill" style="height:74%;background:var(--olive)"></div><div class="bar-label">May</div></div><div class="bar-col"><div class="bar-fill" style="height:84%;background:var(--olive)"></div><div class="bar-label">Jun</div></div></div><div style="font-size:9px;color:var(--g500);margin-top:4px">📈 Jan-Jun: 120K → 175K (+46%)</div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Trends need visibilityVisual bar charts show trends</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Monitoring Dashboard</div><div class="card-subtitle i18n-zh">Real-time system metrics</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownCPU Usage 78%
-Memory 65%
-Disk 42%
-Latency 23ms</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px"><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px;border-left:3px solid var(--rust)"><div style="display:flex;justify-content:space-between"><span style="color:var(--g500)">CPU<span style="color:var(--rust);font-weight:600">78%</div><div class="sparkline" style="margin-top:4px"><div class="sp" style="height:65%;background:var(--rust)"></div><div class="sp" style="height:70%;background:var(--rust)"></div><div class="sp" style="height:78%;background:var(--rust)"></div><div class="sp" style="height:72%;background:var(--rust)"></div><div class="sp" style="height:68%;background:var(--rust)"></div><div class="sp" style="height:74%;background:var(--rust)"></div></div></div><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px;border-left:3px solid var(--clay)"><div style="display:flex;justify-content:space-between"><span style="color:var(--g500)">Memory<span style="color:var(--clay);font-weight:600">65%</div><div style="margin-top:4px;height:4px;background:var(--g200);border-radius:2px;overflow:hidden"><div style="width:65%;height:100%;background:var(--clay);border-radius:2px"></div></div></div><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px"><div style="display:flex;justify-content:space-between"><span style="color:var(--g500)">Disk<span style="color:var(--g700)">42%</div></div><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px"><div style="display:flex;justify-content:space-between"><span style="color:var(--g500)">Latency<span style="color:var(--g700)"><span class="live-dot"> 23ms</div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Monitoring needs real-time colors and sparkline  health instant</div></div></div></section><section class="scene" id="slides"><div class="scene-header"><span class="idx">06<h2><span class="i18n-zh">Slide Deck</h2><span class="count">1 demo</div><div class="scene-desc i18n-zh">Markdown can't paginate or animate  presentations need stage presence.</div><div class="card-grid c1"><div class="comp-card"><div class="card-title"><span class="i18n-zh">Q3 Tech Retrospective</div><div class="card-subtitle i18n-zh">Key metrics & milestone review</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown## Slides1: Q3Review
-- Availability: 99.95%
-- Deploys: 47
-- Perf Gain 40%</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;background:var(--slate);border-radius:var(--r8);padding:16px;color:#fff;text-align:center"><div style="font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--clay);margin-bottom:8px">SLIDE 1/4</div><div style="font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:12px">Q3 Tech Retrospective</div><div style="display:flex;justify-content:center;gap:16px"><div><span style="font-size:22px;font-weight:600;color:var(--olive)">99.95%<br><span style="font-size:9px;opacity:.7">Availability</div><div><span style="font-size:22px;font-weight:600;color:var(--clay)">47<br><span style="font-size:9px;opacity:.7">Deploys</div><div><span style="font-size:22px;font-weight:600;color:var(--sky)">40%<br><span style="font-size:9px;opacity:.7">Perf Gain</div></div><div style="display:flex;justify-content:center;gap:4px;margin-top:12px"><span style="width:6px;height:6px;border-radius:50%;background:var(--clay);display:block"><span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);display:block"><span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);display:block"><span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);display:block"></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Slides need stage presence  dark bg + big numbers + progress indicators create immersion</div></div></div></section><section class="scene" id="learning"><div class="scene-header"><span class="idx">07<h2><span class="i18n-zh">Research & Learning</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown can't progressively reveal  learning needs step-by-step, algorithms need to be visual.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">React Hooks Tutorial</div><div class="card-subtitle i18n-zh">useState step-by-step</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown```js
-const [count, setCount] = useState(0)
-```
-useState returns state value and update function.</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="tabs-mini"><div class="tab-headers"><div class="tab-h active">Step 1</div><div class="tab-h">Step 2</div><div class="tab-h">Step 3</div></div><div class="tab-body"><div style="background:var(--g100);border-radius:var(--r8);padding:8px;font-family:var(--mono);font-size:10px"><span style="color:var(--clay)">const [count, setCount] = <span style="color:var(--sky)">useState(<span style="color:var(--olive)">0)</div><div style="margin-top:6px;padding:4px 8px;background:var(--clay);color:#fff;border-radius:4px;font-size:9px">💡 useState(0) declares a state variable with initial value 0</div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Learning needs gradual reveal  tabs unfold step-by-step with explanations</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">AlgorithmsVisual</div><div class="card-subtitle i18n-zh">QuickSort step display</div><div class="split"><div class="md-panel"><span class="panel-label">📄 MarkdownStep 1: Choose pivot
-Step 2: Partition
-Step 3: Recursively sort</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%"><div style="display:flex;gap:3px;align-items:flex-end;height:48px;padding:4px"><div style="width:22px;background:var(--g200);height:20%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px">3</div><div style="width:22px;background:var(--clay);height:80%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff">8</div><div style="width:22px;background:var(--g200);height:40%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px">5</div><div style="width:22px;background:var(--g200);height:60%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px">7</div><div style="width:22px;background:var(--olive);height:100%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff">10</div><div style="width:22px;background:var(--g200);height:30%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px">4</div><div style="width:22px;background:var(--g200);height:50%;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px">6</div></div><div style="font-size:9px;color:var(--g500);text-align:center">🔺 Pivot (value=10) · green highlight</div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Algorithms need motionVisualarray + highlights make concrete</div></div></div></section><section class="scene" id="status-report"><div class="scene-header"><span class="idx">08<h2><span class="i18n-zh">Status Reports</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown can't express state semantics  health needs color, progress needs flow.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">SRE Weekly Report</div><div class="card-subtitle i18n-zh">System health overview</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown- Availability: 99.9%
-- P50Latency: 45ms
-- P99Latency: 120ms
-- Error Rate: 0.02%</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;font-size:10px"><div class="health" style="margin-bottom:8px"><div class="health-pill on-track"><span class="dot"> on-track</div><div class="health-pill at-risk"><span class="dot"> at-risk</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px"><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px"><div style="color:var(--g500)">Availability</div><div style="font-size:18px;font-weight:600;color:var(--olive)">99.9%</div></div><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px"><div style="color:var(--g500)">P50 Latency</div><div style="font-size:18px;font-weight:600;color:var(--clay)">45ms</div></div><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px"><div style="color:var(--g500)">P99 Latency</div><div style="font-size:18px;font-weight:600;color:var(--clay)">120ms</div></div><div style="border:1px solid var(--g200);border-radius:var(--r8);padding:8px"><div style="color:var(--g500)">Error Rate</div><div style="font-size:18px;font-weight:600;color:var(--olive)">0.02%</div></div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Status needs color  pills and values make health instantly readable</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">Project Kanban Board</div><div class="card-subtitle i18n-zh">Task status tracking</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown| Tasks | state |
-|------|------|
-| Design Review | To Do |
-| Frontend Dev | In Progress |
-| Testing | Done |</div><div class="html-panel"><span class="panel-label">🎨 HTML<div class="kanban-mini"><div class="kanban-col"><div class="col-title">📋 To Do</div><div class="kanban-card">Design Review</div><div class="kanban-card">DB Migration</div></div><div class="kanban-col" style="border-top:2px solid var(--clay)"><div class="col-title" style="color:var(--clay)">⚡ In Progress</div><div class="kanban-card" style="border-left:2px solid var(--clay)">Frontend Dev</div><div class="kanban-card" style="border-left:2px solid var(--clay)">API Integration</div></div><div class="kanban-col"><div class="col-title">✅ Done</div><div class="kanban-card" style="opacity:.6">Testing</div><div class="kanban-card" style="opacity:.6">Docs</div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Progress needs flow  Kanban columns and card positions ARE the state</div></div></div></section><section class="scene" id="editor"><div class="scene-header"><span class="idx">09<h2><span class="i18n-zh">Custom Editor</h2><span class="count">2 demos</div><div class="scene-desc i18n-zh">Markdown can't be edited  configuration needs operation, queries need execution.</div><div class="card-grid c2"><div class="comp-card"><div class="card-title"><span class="i18n-zh">Feature Flag Console</div><div class="card-subtitle i18n-zh">Toggle configuration UI</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdownflag: dark_mode
-enabled: true
-rollout: 50%</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;font-size:10px"><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border:1px solid var(--g200);border-radius:var(--r8);margin-bottom:4px"><div><span style="font-weight:600">dark_mode<br><span style="font-size:9px;color:var(--g500)">50% rollout</div><div class="toggle-switch on"><div class="knob"></div></div></div><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border:1px solid var(--g200);border-radius:var(--r8)"><div><span style="font-weight:600">new_search<br><span style="font-size:9px;color:var(--g500)">Off</div><div class="toggle-switch"><div class="knob"></div></div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Configuration needs control  toggle switches give users a sense of state</div></div><div class="comp-card"><div class="card-title"><span class="i18n-zh">SQL Query Tool</div><div class="card-subtitle i18n-zh">Interactive query interface</div><div class="split"><div class="md-panel"><span class="panel-label">📄 Markdown```sql
-SELECT * FROM users WHERE status = 'active'
-```
-Returns 42 rows</div><div class="html-panel"><span class="panel-label">🎨 HTML<div style="width:100%;font-size:10px"><div style="background:var(--g100);border-radius:var(--r8);padding:8px;font-family:var(--mono);font-size:10px;line-height:1.6"><span style="color:var(--sky)">SELECT * <span style="color:var(--sky)">FROM users<br><span style="color:var(--sky)">WHERE status = <span style="color:var(--olive)">'active'</div><div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center"><span style="padding:3px 10px;background:var(--clay);color:#fff;border-radius:4px;font-size:10px">▶ Run<span style="font-size:10px;color:var(--g500)">42 rows · 0.032s</div><div style="margin-top:6px;border:1px solid var(--g200);border-radius:var(--r8);overflow:hidden"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--g100);padding:4px 8px;font-weight:600;font-size:9px"><span>name<span>email<span>status</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:4px 8px;border-top:1px solid var(--g200);font-size:9px"><span>Alice<span>z@ex.com<span class="badge green">active</div></div></div></div></div><div class="insight"><strong>💡 <span class="i18n-zh">Key Difference: </strong><span class="i18n-zh">Queries need Runsyntax highlight + Runbutton + run+results=workflow</div></div></div></section><section style="margin-bottom:40px"><div class="scene-header"><h2><span class="i18n-zh">Why  HTML beats Markdown  beats？</h2></div><div class="card-grid" style="grid-template-columns:1fr 1fr"><div style="background:var(--paper);border:1.5px solid var(--g300);border-radius:var(--r12);padding:18px 20px"><h3 style=color:var(--slate);margin-bottom:12px>Markdown</h3><div style=color:var(--g500);line-height:1.8;font-size:13px>• No spatial relationships<br>• Limited table formatting<br>• No interactivity<br>• Limited layout</div></div><div style="background:var(--paper);border:1.5px solid var(--clay);border-radius:var(--r12);padding:18px 20px"><h3 style=color:var(--clay);margin-bottom:12px>HTML</h3><div style=color:var(--g700);line-height:1.8;font-size:13px>• SVG charts、flowcharts<br>• Form Validation、animation、toggles<br>• Diff highlighting、line numbers、annotations<br>• Precise typography</div></div></div></section><footer><p>With thanks to the open-source project <strong>html-effectiveness</strong><br>Based on the work by <a href="https://github.com/ThariqS" target=_blank rel=noopener>ThariqS</a> · <a href="https://github.com/ThariqS/html-effectiveness" target=_blank rel=noopener>View on GitHub</a></p></footer></div>   <script>
-(function(){
-  var t=document.getElementById("themeToggle");
-  var h=document.documentElement;
-  if(t) t.addEventListener("click",function(){
-    var dark=h.getAttribute("data-theme")==="dark";
-    h.setAttribute("data-theme",dark?"light":"dark");
-    t.textContent=dark?"Claude Code":"VS Code";
-  });
-})();
-</script>
+        <h3>Pattern 4: Design System</h3>
+        <div class="demo-section">
+            <div class="swatch-grid">
+                <div class="swatch"><div class="color" style="background:#D97757"></div><div class="label">--clay</div></div>
+                <div class="swatch"><div class="color" style="background:#788C5D"></div><div class="label">--olive</div></div>
+                <div class="swatch"><div class="color" style="background:#B04A3F"></div><div class="label">--rust</div></div>
+                <div class="swatch"><div class="color" style="background:#E3DACC"></div><div class="label">--oat</div></div>
+                <div class="swatch"><div class="color" style="background:#6A8CAF"></div><div class="label">--sky</div></div>
+                <div class="swatch"><div class="color" style="background:#141413"></div><div class="label">--slate</div></div>
+            </div>
+        </div>
 
+        <h3>Pattern 7: Status Report</h3>
+        <div class="demo-section">
+            <span class="health">On Track</span>
+            <div style="margin-top:16px;display:flex;align-items:flex-end;gap:8px;height:80px;">
+                <div style="flex:1;background:#788C5D;border-radius:4px 4px 0 0;height:80%"></div>
+                <div style="flex:1;background:#788C5D;border-radius:4px 4px 0 0;height:60%"></div>
+                <div style="flex:1;background:#D97757;border-radius:4px 4px 0 0;height:40%"></div>
+                <div style="flex:1;background:var(--border);border-radius:4px 4px 0 0;height:20%"></div>
+            </div>
+        </div>
+
+        <h3>Pattern 11: Dashboard</h3>
+        <div class="demo-section">
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="value">12.5K</div>
+                    <div class="delta">↑ 12%</div>
+                </div>
+                <div class="metric">
+                    <div class="value">98.2%</div>
+                    <div class="delta">↑ 0.5%</div>
+                </div>
+                <div class="metric">
+                    <div class="value">$42K</div>
+                    <div class="delta" style="color:#B04A3F">↓ 3%</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Pattern 12: Live Artifact Dashboard</h3>
+        <div class="demo-section">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                <span style="font-family:var(--font-mono);font-size:12px;color:var(--muted);">Live Metrics</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--olive);display:flex;align-items:center;gap:6px;">
+                    <span style="width:6px;height:6px;border-radius:50%;background:var(--olive);"></span> Live
+                </span>
+            </div>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:8px;">Revenue</div>
+                    <div class="value">$128K</div>
+                    <div class="delta">↑ 12.4%</div>
+                    <div style="display:flex;align-items:flex-end;gap:3px;height:24px;margin-top:12px;">
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:40%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:55%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:45%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:70%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:60%"></div>
+                        <div style="flex:1;background:var(--accent);border-radius:2px;height:80%"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:8px;">Users</div>
+                    <div class="value">8.2K</div>
+                    <div class="delta">↑ 3.2%</div>
+                    <div style="display:flex;align-items:flex-end;gap:3px;height:24px;margin-top:12px;">
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:60%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:65%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:62%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:70%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:68%"></div>
+                        <div style="flex:1;background:var(--accent);border-radius:2px;height:75%"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:8px;">Churn</div>
+                    <div class="value">2.1%</div>
+                    <div class="delta" style="color:var(--olive)">↓ 0.3%</div>
+                    <div style="display:flex;align-items:flex-end;gap:3px;height:24px;margin-top:12px;">
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:80%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:75%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:78%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:70%"></div>
+                        <div style="flex:1;background:var(--accent-soft);border-radius:2px;height:72%"></div>
+                        <div style="flex:1;background:var(--accent);border-radius:2px;height:65%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Pattern 13: Frame Effects — Glitch Title</h3>
+        <div class="demo-section" style="text-align:center;padding:60px 32px;position:relative;overflow:hidden;">
+            <div style="position:absolute;width:140%;height:140%;top:-20%;left:-20%;background:linear-gradient(135deg, var(--accent), #788C5D, var(--clay));opacity:0.1;border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;z-index:0;"></div>
+            <div style="position:relative;z-index:1;">
+                <div style="font-family:var(--font-display);font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-0.03em;margin-bottom:16px;color:var(--fg);">
+                    <span style="position:relative;display:inline-block;">
+                        Visual Moments
+                        <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:#ff6b6b;z-index:-1;clip-path:inset(20% 0 60% 0);transform:translate(-2px,2px);">Visual Moments</span>
+                        <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:#4ecdc4;z-index:-2;clip-path:inset(60% 0 20% 0);transform:translate(2px,-2px);">Visual Moments</span>
+                    </span>
+                </div>
+                <p style="color:var(--muted);font-size:16px;margin:0;">One dramatic moment per page — glitch, liquid, light leak</p>
+            </div>
+        </div>
+
+        <a href="https://github.com/YardonYan/html-skill-effectiveness" class="cta">View on GitHub</a>
+
+        <footer>
+            <p>html-effectiveness v2.1 — Based on <a href="https://github.com/ThariqS/html-effectiveness">html-effectiveness</a>, <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">frontend-design</a>, and <a href="https://github.com/opendesign">open-design</a></p>
+        </footer>
+    </div>
 </body>
 </html>
