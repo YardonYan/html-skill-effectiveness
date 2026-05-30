@@ -7,8 +7,144 @@ A skill for generating beautiful, self-contained, single-file HTML artifacts. No
 
 一个用于生成美观、自包含、单文件 HTML 工件的技能。无需构建步骤，零依赖，直接在浏览器中打开。
 
-[![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-effectiveness)
+[![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE.txt)
+
+---
+
+## Architecture Overview / 架构总览
+
+```mermaid
+graph TB
+    subgraph Input["📥 Input Layer"]
+        U[User Intent<br/>用户意图]
+        P[Pattern Selection<br/>模式选择]
+    end
+
+    subgraph Core["⚙️ Core Engine"]
+        DS[Design System<br/>设计系统]
+        PC[Pattern Catalog<br/>模式目录 13种]
+        WF[Workflow Engine<br/>工作流引擎]
+    end
+
+    subgraph Critique["🔍 Critique System v2.1"]
+        C5[5-Dimension<br/>Self-Critique]
+        RS[Radar Chart<br/>雷达图可视化]
+        DL[DevLoop<br/>迭代优化]
+    end
+
+    subgraph Output["📤 Output Layer"]
+        H[Single-File HTML<br/>单文件HTML]
+        Q[Quality Score ≥4<br/>质量分≥4]
+    end
+
+    U --> P
+    P --> DS
+    P --> PC
+    DS --> WF
+    PC --> WF
+    WF --> C5
+    C5 --> RS
+    RS --> DL
+    DL --> H
+    DL --> Q
+
+    style Input fill:#fafaf7,stroke:#e8e5df
+    style Core fill:#ffffff,stroke:#c96442
+    style Critique fill:#fff5f0,stroke:#c96442
+    style Output fill:#f0f7ec,stroke:#788c5d
+```
+
+---
+
+## Workflow Pipeline / 工作流管道
+
+```mermaid
+flowchart LR
+    S0[Step 0<br/>Pre-flight<br/>预飞检查] --> S1
+    S1[Step 1<br/>Aesthetic Direction<br/>美学方向] --> S2
+    S2[Step 2<br/>Write Artifact<br/>编写工件] --> S3
+    S3[Step 3<br/>Self-Critique<br/>自评审] --> S4{Score ≥ 4?}
+    S4 -->|No| S5[DevLoop<br/>迭代修复]
+    S5 --> S3
+    S4 -->|Yes| S6[Step 4<br/>Emit Output<br/>输出]
+
+    style S0 fill:#fafaf7,stroke:#e8e5df
+    style S1 fill:#ffffff,stroke:#c96442
+    style S2 fill:#ffffff,stroke:#c96442
+    style S3 fill:#fff5f0,stroke:#c96442
+    style S4 fill:#fff5f0,stroke:#c96442
+    style S5 fill:#fdf2f0,stroke:#b04a3f
+    style S6 fill:#f0f7ec,stroke:#788c5d
+```
+
+---
+
+## Critique System Architecture / 评审系统架构
+
+```mermaid
+graph LR
+    subgraph Dimensions["5 Dimensions / 五个维度"]
+        D1[Visual Hierarchy<br/>视觉层级]
+        D2[Responsive<br/>响应式]
+        D3[Interaction<br/>交互性]
+        D4[Performance<br/>性能]
+        D5[Accessibility<br/>可访问性]
+    end
+
+    subgraph Scoring["Band Scoring / 波段评分"]
+        B1[0-3: Critical Issues<br/>严重问题]
+        B2[4-6: Acceptable<br/>可接受]
+        B3[7-10: Exceptional<br/>优秀]
+    end
+
+    subgraph Action["Action Categories / 动作分类"]
+        K[Keep<br/>保留]
+        F[Fix<br/>修复]
+        QW[Quick-wins<br/>快速优化]
+    end
+
+    D1 --> Scoring
+    D2 --> Scoring
+    D3 --> Scoring
+    D4 --> Scoring
+    D5 --> Scoring
+    Scoring --> Action
+
+    style Dimensions fill:#fafaf7,stroke:#e8e5df
+    style Scoring fill:#ffffff,stroke:#c96442
+    style Action fill:#f0f7ec,stroke:#788c5d
+```
+
+---
+
+## Pattern Catalog Map / 模式目录图
+
+```mermaid
+mindmap
+  root((Pattern Catalog<br/>模式目录))
+    Comparison / 对比
+      1. Side-by-Side
+      2. Annotated Diff
+    Diagram / 图表
+      3. Module Map
+      8. Flowchart
+      9. SVG Illustration
+    Document / 文档
+      6. Interactive Explainer
+      7. Status Report
+    Presentation / 演示
+      5. Slide Deck
+        36 themes
+        Canvas FX
+    System / 系统
+      4. Living Design System
+    Interactive / 交互
+      10. Custom Editor
+      11. Dashboard
+      12. Live Artifact Dashboard
+      13. Frame Effects
+```
 
 ---
 
