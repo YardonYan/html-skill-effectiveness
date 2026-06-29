@@ -376,6 +376,130 @@
         <footer>
             <p>html-effectiveness v2.1 — Based on <a href="https://github.com/ThariqS/html-effectiveness">html-effectiveness</a>, <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">frontend-design</a>, and <a href="https://github.com/opendesign">open-design</a></p>
         </footer>
+
+        <!-- #14 State Coverage Demo -->
+        <h2>v3.0 Feature Demos</h2>
+
+        <h3>#14 State Coverage Demo</h3>
+        <div class="demo-section">
+            <style>
+                .sc-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-panel);overflow:hidden}
+                .sc-tabs{display:flex;gap:6px;padding:14px 18px;background:var(--bg);border-bottom:1.5px solid var(--border);flex-wrap:wrap}
+                .sc-tab{padding:6px 16px;border:1.5px solid var(--border);border-radius:var(--radius-pill);font-size:12px;font-family:var(--font-mono);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .15s}
+                .sc-tab:hover{border-color:var(--accent);color:var(--accent)}
+                .sc-tab.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+                .sc-pane{padding:32px 24px;min-height:180px}
+                .sc-sk{display:flex;flex-direction:column;gap:10px}
+                .sc-sk-bar{height:12px;border-radius:6px;background:var(--border);animation:skPulse 1.5s infinite ease-in-out}
+                .sc-sk-bar:nth-child(1){width:60%;animation-delay:0s}
+                .sc-sk-bar:nth-child(2){width:90%;animation-delay:.2s}
+                .sc-sk-bar:nth-child(3){width:75%;animation-delay:.4s}
+                @keyframes skPulse{0%,100%{opacity:.4}50%{opacity:.9}}
+                @media(prefers-reduced-motion:reduce){.sc-sk-bar{animation:none;opacity:.6}}
+                .sc-center{text-align:center;padding:12px 0}
+                .sc-center svg{margin-bottom:10px;opacity:.35}
+                .sc-center .msg{font-size:14px;color:var(--muted);margin-bottom:12px}
+                .sc-btn-p{display:inline-block;padding:8px 20px;background:var(--accent);color:var(--bg);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none}
+                .sc-btn-s{display:inline-block;padding:8px 20px;border:1.5px solid #B04A3F;color:#B04A3F;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:transparent}
+                .sc-err-msg{font-size:14px;color:#B04A3F;margin-bottom:12px}
+                .sc-row{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg);border-radius:8px}
+                .sc-av{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;color:var(--muted);flex-shrink:0}
+                .sc-info .name{font-size:13px;color:var(--fg);font-weight:500}
+                .sc-info .sub{font-size:11px;color:var(--muted)}
+                .sc-ov{max-width:320px;padding:10px 14px;background:var(--bg);border-radius:8px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--fg)}
+                .sc-ext{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+                .sc-ext-it{background:var(--bg);border-radius:8px;padding:12px 14px;text-align:center;min-width:72px}
+                .sc-ext-it .num{font-family:var(--font-display);font-size:22px;font-weight:500;color:var(--fg)}
+                .sc-ext-it .lbl{font-size:10px;color:var(--muted);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em}
+            </style>
+            <div class="sc-card">
+                <div class="sc-tabs">
+                    <button class="sc-tab active" onclick="sc_en('loading',this)">Loading</button>
+                    <button class="sc-tab" onclick="sc_en('empty',this)">Empty</button>
+                    <button class="sc-tab" onclick="sc_en('error',this)">Error</button>
+                    <button class="sc-tab" onclick="sc_en('populated',this)">Populated</button>
+                    <button class="sc-tab" onclick="sc_en('edge',this)">Edge</button>
+                </div>
+                <div class="sc-pane" id="sc-en-pane"></div>
+            </div>
+            <script>
+                (function(){
+                    var u=[{n:'Alice Chen',e:'alice@acmecorp.com'},{n:'Bob Park',e:'bob@acmecorp.com'},{n:'Carol Wu',e:'carol@acmecorp.com'}];
+                    var t={loading:'<div class="sc-sk"><div class="sc-sk-bar"></div><div class="sc-sk-bar"></div><div class="sc-sk-bar"></div></div>',
+                        empty:'<div class="sc-center"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg><div class="msg">No data yet</div><button class="sc-btn-p" onclick="event.stopPropagation()">Create First</button></div>',
+                        error:'<div class="sc-center"><div style="font-size:40px;margin-bottom:8px">&#9888;</div><div class="sc-err-msg">Request failed: Network timeout</div><button class="sc-btn-s" onclick="event.stopPropagation()">Retry</button></div>',
+                        populated:'<div style="display:grid;gap:10px">'+u.map(function(x){return '<div class="sc-row"><div class="sc-av">'+x.n.charAt(0)+'</div><div class="sc-info"><div class="name">'+x.n+'</div><div class="sub">'+x.e+'</div></div></div>'}).join('')+'</div>',
+                        edge:'<div class="sc-ov" title="Extremely long user name with descriptive suffix data v3.0 edge case testing">Extremely long user name with descriptive suffix data v3.0 edge case testing</div><div class="sc-ext"><div class="sc-ext-it"><div class="num">0</div><div class="lbl">min</div></div><div class="sc-ext-it"><div class="num">9,999+</div><div class="lbl">max</div></div><div class="sc-ext-it"><div class="num">-0.00</div><div class="lbl">zero</div></div></div>'};
+                    document.getElementById('sc-en-pane').innerHTML=t.loading;
+                    window.sc_en=function(st,btn){document.querySelectorAll('.sc-tab').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.getElementById('sc-en-pane').innerHTML=t[st]||t.loading;};
+                })();
+            </script>
+        </div>
+
+        <!-- #15 Form Validation State Machine -->
+        <h3>#15 Form Validation State Machine</h3>
+        <div class="demo-section">
+            <style>
+                .fv-wrap{max-width:400px;margin:0 auto}
+                .fv-grp{margin-bottom:14px}
+                .fv-grp label{display:block;font-size:13px;font-weight:500;color:var(--fg);margin-bottom:5px}
+                .fv-inp{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font-body);background:var(--surface);color:var(--fg);outline:none;transition:border-color .2s}
+                .fv-inp:focus{border-color:var(--accent)}
+                .fv-inp.err{border-color:#B04A3F}
+                .fv-inp.ok{border-color:#788C5D}
+                .fv-hint{font-size:12px;margin-top:4px;min-height:18px}
+                .fv-hint.err{color:#B04A3F}
+                .fv-hint.ok{color:#788C5D}
+                .fv-sb{width:100%;padding:10px 0;background:var(--accent);color:var(--bg);border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+                .fv-sb:hover{opacity:.9}
+                .fv-log{background:var(--bg);border-radius:8px;padding:10px 14px;margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--muted);min-height:20px}
+            </style>
+            <div class="fv-wrap">
+                <div class="fv-grp">
+                    <label for="fv-en-email">Email Address</label>
+                    <input type="email" id="fv-en-email" class="fv-inp" placeholder="name@example.com" autocomplete="email">
+                    <div class="fv-hint" id="fv-en-hint"></div>
+                </div>
+                <button class="fv-sb" id="fv-en-submit">Submit</button>
+                <div class="fv-log" id="fv-en-log">Ready — awaiting user action</div>
+            </div>
+            <script>
+                (function(){
+                    var inp=document.getElementById('fv-en-email'),hint=document.getElementById('fv-en-hint'),log=document.getElementById('fv-en-log'),sb=document.getElementById('fv-en-submit'),timer=null,interacted=false;
+                    function v(){var val=inp.value.trim();if(!val){hint.textContent='Please enter an email';hint.className='fv-hint err';inp.className='fv-inp err';return false}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){hint.textContent='Invalid email format';hint.className='fv-hint err';inp.className='fv-inp err';return false}hint.textContent='✓ Valid format';hint.className='fv-hint ok';inp.className='fv-inp ok';return true;}
+                    inp.addEventListener('focus',function(){log.textContent='Rule 1: Focus — no validation'});inp.addEventListener('input',function(){interacted=true;if(inp.className.indexOf('err')!==-1||inp.className.indexOf('ok')!==-1){inp.className='fv-inp';hint.textContent='';hint.className='fv-hint'}log.textContent='Rule 3: Typing — clear error'});inp.addEventListener('blur',function(){if(!interacted){log.textContent='Rule 2: Blur — skip (no interaction)';return}clearTimeout(timer);timer=setTimeout(function(){log.textContent='Rule 2+4: Blur validation (500ms debounce)';v();},500);});sb.addEventListener('click',function(e){e.preventDefault();clearTimeout(timer);log.textContent='Rule 2+4: Pre-submit validation';if(v()){inp.className='fv-inp ok';hint.textContent='✓ Validated, simulating submit...';setTimeout(function(){alert('Submission simulated');},600);}});
+                })();
+            </script>
+        </div>
+
+        <!-- #16 Tuning Knobs Panel -->
+        <h3>#16 Tuning Knobs Panel</h3>
+        <div class="demo-section">
+            <style>
+                .tk-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+                @media(max-width:600px){.tk-wrap{grid-template-columns:1fr}}
+                .tk-kn{text-align:center}
+                .tk-kn label{display:block;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+                .tk-kn input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--border);outline:none}
+                .tk-kn input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+                .tk-kn .val{font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--fg);margin-top:4px}
+                .tk-pv{background:var(--bg);border-radius:10px;padding:24px;display:flex;align-items:center;justify-content:center;min-height:100px}
+                .tk-cd{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:20px 24px;text-align:center;transition:all .2s ease;max-width:280px;width:100%}
+                .tk-cd:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+                .tk-cd .title{font-family:var(--font-display);font-size:18px;color:var(--fg);margin-bottom:6px}
+                .tk-cd .desc{font-size:13px;color:var(--muted);line-height:1.5}
+            </style>
+            <div class="tk-wrap">
+                <div class="tk-kn"><label>Variance</label><input type="range" min="1" max="10" value="5" id="tk-e-v"><div class="val" id="tk-e-vv">5</div></div>
+                <div class="tk-kn"><label>Motion</label><input type="range" min="1" max="10" value="5" id="tk-e-m"><div class="val" id="tk-e-mv">5</div></div>
+                <div class="tk-kn"><label>Density</label><input type="range" min="1" max="10" value="5" id="tk-e-d"><div class="val" id="tk-e-dv">5</div></div>
+            </div>
+            <div class="tk-pv"><div class="tk-cd" id="tk-e-cd"><div class="title">Live Preview</div><div class="desc">Adjust knobs above to see changes</div></div></div>
+            <script>
+                (function(){var cd=document.getElementById('tk-e-cd'),bp=20;function u(){var v=+document.getElementById('tk-e-v').value,m=+document.getElementById('tk-e-m').value,d=+document.getElementById('tk-e-d').value;document.getElementById('tk-e-vv').textContent=v;document.getElementById('tk-e-mv').textContent=m;document.getElementById('tk-e-dv').textContent=d;cd.querySelector('.title').style.fontSize=(18+(v-5)*1.8)+'px';cd.querySelector('.desc').style.fontSize=(13+(v-5)*1)+'px';cd.style.transitionDuration=(200-(m-5)*18)+'ms';cd.style.padding=(bp+(d-5)*4)+'px '+(bp+(d-5)*5)+'px';}document.getElementById('tk-e-v').addEventListener('input',u);document.getElementById('tk-e-m').addEventListener('input',u);document.getElementById('tk-e-d').addEventListener('input',u);})();
+            </script>
+        </div>
+
     </div>
 </body>
 </html>
