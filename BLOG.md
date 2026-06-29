@@ -936,4 +936,232 @@ cp -r html-skill-effectiveness ~/.claude/skills/
 
 ---
 
-*本文基于 html-effectiveness v2.1，融合了 [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) by Anthropic、[open-design](https://github.com/opendesign) by OpenDesign（含 critique 系统和 DevLoop）以及 html-ppt 的 36 主题演示系统。*
+## 9. v3.0：The Craft Discipline Revolution — 从"凭感觉检查"到"基于研究的可执行约束"
+
+v2.1 解决了"如何批判"的问题——五维自评、雷达图、DevLoop 迭代。
+
+但批判的前提是什么？批判的依据是什么？
+
+v2.1 的五维自评（哲学一致性、视觉层级、细节执行、功能性、创新性）是一个好的框架，但它太抽象了。"哲学一致性 7 分"意味着什么？我该检查什么？证据在哪里？
+
+v3.0 回答了这个问题——它引入了 **Craft Discipline System**（工艺纪律系统），一个基于一手研究的、可执行的、可检查的约束体系。
+
+### 9.1 七条工艺规则
+
+v3.0 从 OpenDesign 整合了七条工艺规则文件，每条都基于一手研究：
+
+| # | 规则 | 核心贡献 | 研究来源 |
+|---|---|---|---|
+| 1 | **Anti-AI-Slop（反AI味）** | 七大罪 + 灵魂公式(80/20) | OpenDesign 实践提炼 |
+| 2 | **Color（色彩）** | 四层调色板 + 强调色上限(2/屏) | 色彩理论 + WCAG |
+| 3 | **Typography（排版）** | Letter-spacing 规则 + 三权重体系 | Bringhurst《排版风格要素》 |
+| 4 | **Typography Hierarchy（排版层级）** | 五向量 + 三级模型 | 排版层级理论 |
+| 5 | **Animation Discipline（动画纪律）** | 时长阈值 + 曲线vs弹簧 + 3个神话纠正 | Tversky 2002 + M3 + Carbon |
+| 6 | **Accessibility Baseline（可访问性底线）** | WCAG法律底线 + ARIA纪律 | WCAG 2.2 + WebAIM 2026 + ARIA APG |
+| 7 | **Laws of UX（UX法则）** | 26条可执行法则 | Hick/Miller/Fitts/Jakob 等一手研究 |
+
+每条规则都包含：
+- **P0 约束**：必须通过，否则不 emit
+- **证据引用**：每条规则都引用具体研究来源
+- **可检查性**：设计为可被 linter 自动检查
+
+### 9.2 Letter-Spacing：最被低估的规则
+
+让我举一个具体的例子——**Letter-Spacing（字距）**。
+
+这是 AI 生成设计中最常见、最容易被忽略、但最能区分"业余"和"专业"的规则：
+
+| 上下文 | Letter-Spacing |
+|---|---|
+| 正文（14-18px） | `0`（默认） |
+| 小字（11-13px） | `0.01em` 到 `0.02em`（正） |
+| UI 标签和按钮 | `0.02em` |
+| **ALL CAPS** | **`0.06em` 到 `0.1em`（必须）** |
+| 标题 32px+ | `-0.01em` 到 `-0.02em`（负） |
+| Display 48px+ | `-0.02em` 到 `-0.03em`（负） |
+
+两条关键规则：
+1. **ALL CAPS 必须有 ≥0.06em 的正字距** —— 否则字母间距太紧，看起来业余
+2. **Display 文字必须有负字距** —— 否则大号文字显得松散、无力
+
+为什么是 `0.06em`？这不是拍脑袋——它来自 Bringhurst《排版风格要素》§3.2.7：大写字母的字距应为 em 的 5-10%。现代屏幕实践将下限取整为 0.06em。
+
+v3.0 将这两条规则写入 P0 —— **ALL CAPS 无字距 = 不 emit**。
+
+### 9.3 动画纪律：三个神话纠正
+
+另一个例子——**Animation Discipline（动画纪律）**。
+
+AI 生成的设计经常引用一些"设计法则"，但很多是民间传说。v3.0 纠正了三个：
+
+| 神话 | 事实 | 来源 |
+|---|---|---|
+| "Skeleton screens feel 11% faster" | Harrison/Yeo/Hudson CHI 2010 测量的是 **backwards-decelerating ribbed determinate progress bars**，不是 skeleton | 原论文 |
+| "Doherty Threshold = 400ms" | 1982 论文不包含"400"。最低测量阈值 = 300ms | 原论文 |
+| "M2 标准曲线 = M3 标准曲线" | M3 标准是 `cubic-bezier(0.2,0,0,1)`。M2 的 `cubic-bezier(0.4,0,0.2,1)` 在 M3 中叫 `legacy` | Material 3 文档 |
+
+v3.0 的动画规则基于一手研究：
+- **150ms 默认时长**：Material 3 `short3`、IBM Carbon `moderate-01`、Shopify Polaris `150`、Tailwind default 的收敛值
+- **动画仅用于空间/时间/状态转换**：Tversky/Morrison/Bétrancourt 2002 元分析的结论——动画不比静态更适合教学复杂系统
+- **`prefers-reduced-motion`**：WebKit 2017 引入，W3C MQ5 允许 UA 或作者完全移除动画
+
+### 9.4 可访问性：法律底线因司法管辖区而异
+
+这是最被忽略的事实——**WCAG 的法律底线因司法管辖区而异**：
+
+| 司法管辖区 | 标准 | 参考 |
+|---|---|---|
+| **EU (EAA, 2025-06-28 生效)** | **WCAG 2.1 AA** | EN 301 549 v3.2.1 |
+| **US 公共部门 (ADA Title II 2024)** | **WCAG 2.1 AA** | 2027-04-26 (≥50k 人口) |
+| **US 联邦采购 (Section 508)** | **WCAG 2.0 AA** | Revised 508 Standards |
+| **US 私营部门 (ADA Title III)** | 逐案处理；**WCAG 2.1 AA** 事实标准 | 无联邦法规 |
+
+**实用规则**：目标 **WCAG 2.2 AA** 作为工作上限。它同时满足 EU 和 US 的法律底线。
+
+另一个反直觉的数据——**ARIA 使用越多，错误越多**：
+
+WebAIM Million 2026：ARIA 页面平均 **59.1 错误** vs 非 ARIA 页面 **42 错误**。差距从 2025 年的 30（57 vs 27）缩小到 17，但 ARIA 正确率仍落后于使用率。
+
+v3.0 的 ARIA 纪律：
+1. 原生 HTML 元素优先
+2. 原生元素 + 自定义视觉
+3. APG 模式
+4. 最近 APG 模式 + 文档化偏差（最后手段）
+
+**永远不要发明 ARIA。**
+
+### 9.5 UX 法则：26 条可执行
+
+v3.0 精选了 26 条最实用的 UX 法则，每条都有明确的执行指令：
+
+**格式塔法则（感知）**：
+- **接近性**：相关项目间距 ≤8px，无关项目 ≥24px
+- **相似性**：同类型 = 同视觉处理
+- **连续性**：沿连续线/曲线对齐
+- **闭合性**：用部分轮廓，让眼睛完成
+- **Prägnanz**：更简单的排列胜出
+
+**决策法则**：
+- **Hick 定律**：>7 选项 → 搜索/过滤/分组为 3-5 类
+- **选择过载**：主要操作 ≤3 个
+- **帕累托**：让 20% 显眼，把 80% 埋进菜单
+
+**记忆法则**：
+- **Miller/Cowan**：工作记忆 4±1 项（不是 Miller 的 7±2，Cowan 2001 修正）
+- **Peak-End**：让峰值和结尾刻意设计
+- **Zeigarnik**：多步骤流程显示进度
+
+**交互法则**：
+- **Fitts 定律**：主要操作 ≥44px，靠近可能的光标位置
+- **Jakob 定律**：先匹配熟悉模式，创新在基线之后
+
+### 9.6 状态覆盖：AI 最常见的缺失
+
+AI 生成 UI 最常见的问题——**只画"数据存在"的状态**。
+
+v3.0 要求每个交互表面必须渲染 **5 种状态**：
+
+| 状态 | 触发条件 | 必须包含 |
+|---|---|---|
+| **Loading** | 数据在传输中 | Skeleton/spinner + 15s "耗时较长" 回退 |
+| **Empty** | 无记录 | 标题 + 解释 + 主 CTA（不是空白） |
+| **Error** | 获取失败/验证拒绝 | 发生了什么 + 为什么 + 怎么办（保留用户输入） |
+| **Populated** | 数据存在 | 你实际设计的那个状态 |
+| **Edge** | 极端情况 | 不崩溃的布局 |
+
+**错误状态必须回答三个问题**（按顺序）：
+1. 发生了什么 —— "您的卡被拒绝。" 不是 "出了问题。"
+2. 为什么（如果可知）—— "余额不足。"
+3. 用户能做什么 —— 重试按钮、替代路径、支持链接
+
+### 9.7 表单验证：八状态机
+
+v3.0 引入了完整的表单验证状态机：
+
+| 状态 | 含义 | UI |
+|---|---|---|
+| `pristine` | 用户未交互 | 无错误，无绿勾 |
+| `dirty` | 用户已输入但未提交 | 无错误 |
+| `touched` | 用户已 blur 至少一次 | 字段级约束运行 |
+| `invalid-after-touched` | blur 后约束失败 | 显示错误 |
+| `invalid-after-submit` | 提交尝试，字段仍无效 | 同上 + 焦点管理 |
+| `recovering` | 用户编辑已无效字段 | 在 `input` 事件重验 |
+| `submitting` | 动作在传输中 | 禁用提交，礼貌 live region |
+| `server-error` | 服务器返回字段错误 | 使用服务器消息 |
+
+**四条验证时序规则**：
+1. **首次 blur 后编辑**运行字段级约束 —— 不是 focus，不是首次击键，不是每次击键
+2. **一旦无效，切换到 `input` 事件重验** —— 错误在输入变有效时立即清除
+3. **提交时**运行 schema 解析 —— 焦点移到错误摘要或第一个无效字段
+4. **异步检查分两路** —— 后台预检 debounce 250-500ms；权威服务器验证在提交路径等待响应
+
+CSS 快捷方式：样式基于 `:user-invalid`，不是 `:invalid`。`:user-invalid` 仅在用户提交或 blur 后输入无效时匹配。
+
+### 9.8 P0 增强：从 10 条到 15 条
+
+v3.0 的 P0 反模式列表从 10 条增至 15 条：
+
+新增 5 条：
+1. **ALL CAPS 无 `letter-spacing` ≥ `0.06em`** —— 拥挤的大写 = 业余
+2. **Display 文字 (≥32px) 无负 tracking** —— 松散的 display = 无力
+3. **Serif 约束下用 sans-serif 做展示** —— `h1`/`h2` 必须用 `var(--font-display)`
+4. **圆角卡片 + 彩色左边框** —— 典型的 "AI dashboard tile"
+5. **`:invalid` 不用 `:user-invalid`** —— 页面加载就显示红框 = 未测试验证
+
+### 9.9 v3.0 的意义
+
+v3.0 的意义不在于"加了更多规则"——而在于**规则的来源变了**。
+
+v2.1 的规则是"经验总结"——"不要用紫色渐变"、"不要用 emoji 做图标"。这些规则是对的，但它们没有根基。
+
+v3.0 的规则是"研究提炼"——每条规则都引用一手研究：
+- Letter-spacing 来自 Bringhurst 的《排版风格要素》
+- 动画纪律来自 Tversky 2002 元分析、Material 3、IBM Carbon
+- 可访问性底线来自 WCAG 2.2、ADA Title II、EN 301 549
+- UX 法则来自 Hick、Miller、Fitts、Jakob 等一手论文
+
+这带来的变化是：**规则不再是"我觉得"，而是"研究显示"**。
+
+当 AI 说"这个设计违反了 letter-spacing 规则"时，它不是在表达偏好——它是在引用 Bringhurst。当它说"这个动画时长超过了 500ms 阈值"时，它是在引用 Tversky 的元分析。
+
+这就是 Craft Discipline（工艺纪律）——**可执行的、可检查的、基于研究的约束**。
+
+---
+
+## 10. 总结与获取
+
+### 10.1 这个 Skill 包解决了什么问题？
+
+| 问题 | 解决方案 |
+|---|---|
+| AI 默认输出 Markdown，不适合空间表达 | 用 HTML 替代 Markdown，提供 13 种设计模式 |
+| AI 生成的 HTML 缺乏设计系统 | 6 个核心令牌 + 派生规则 + 字体/间距/响应式规则 |
+| AI 生成的 HTML 缺乏质量检查 | P0/P1/P2 反模式清单 + 5 维自评 + DevLoop 迭代 |
+| AI 生成的 HTML "AI 味"太重 | 7 条工艺规则 + 15 条 P0 约束 + 灵魂公式 |
+| AI 生成的 HTML 可访问性差 | WCAG 法律底线 + ARIA 纪律 + 焦点/对比度规则 |
+| AI 生成的 HTML 状态覆盖不全 | 5 必须状态 + 表单验证状态机 |
+
+### 10.2 如何获取
+
+**GitHub**: [YardonYan/html-effectiveness](https://github.com/YardonYan/html-effectiveness)
+
+**安装到 OpenClaw**:
+```bash
+cp -r html-skill-effectiveness ~/.qclaw/skills/
+```
+
+**安装到 Claude Code**:
+```bash
+cp -r html-skill-effectiveness ~/.claude/skills/
+```
+
+### 10.3 版本历史
+
+- **v3.0** (2026-05-21): Craft Discipline Revolution — 7 条工艺规则 + 状态覆盖 + 表单验证
+- **v2.1** (2026-05-21): Critique Revolution — 五维自评 + DevLoop + 2 新模式
+- **v2.0** (2026-05-20): 设计系统整合 — 6 核心令牌 + 11 模式 + P0/P1/P2
+- **v1.0** (2026-05): 原版 html-effectiveness
+
+---
+
+*本文基于 html-effectiveness v3.0，融合了 [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) by Anthropic、[open-design](https://github.com/opendesign) by OpenDesign（含 7 条 craft rules + state-coverage + form-validation）以及 html-ppt 的 36 主题演示系统。所有规则均基于一手研究，引用具体来源。*

@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 263ae02d9b82b898f7b6446bc49bf3dd_cdb0659373c711f1b2f55254006c9bbf
+    ReservedCode1: 5+W58LIUDfkzJOe2295qMidlVIzvAsGg3Jgop3jQgGj8EPka+FH3863e6+AxwFF71iWOYvecwKC0PMj88orvkBiU+x7LkXxDMMxTyvRJat+FnkJIbTunFxfaF7LvpTvH6gSGgMVz/4lZurKWaEckqBhMWevffPeAmg5N+PGL/RfXCivDKv5aG57Xa+0=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 263ae02d9b82b898f7b6446bc49bf3dd_cdb0659373c711f1b2f55254006c9bbf
+    ReservedCode2: 5+W58LIUDfkzJOe2295qMidlVIzvAsGg3Jgop3jQgGj8EPka+FH3863e6+AxwFF71iWOYvecwKC0PMj88orvkBiU+x7LkXxDMMxTyvRJat+FnkJIbTunFxfaF7LvpTvH6gSGgMVz/4lZurKWaEckqBhMWevffPeAmg5N+PGL/RfXCivDKv5aG57Xa+0=
+---
+
 # html-effectiveness / HTML 效能
 
 > **Trade documents people skim for documents people actually read.**
@@ -7,8 +18,150 @@ A skill for generating beautiful, self-contained, single-file HTML artifacts. No
 
 一个用于生成美观、自包含、单文件 HTML 工件的技能。无需构建步骤，零依赖，直接在浏览器中打开。
 
-[![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-effectiveness)
+[![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE.txt)
+
+---
+
+## Architecture Overview / 架构总览
+
+```mermaid
+graph TB
+    subgraph Input["📥 Input Layer"]
+        U[User Intent / 用户意图]
+        P[Pattern Selection / 模式选择]
+        KN[VARIANCE · MOTION · DENSITY / 三旋钮调参]
+    end
+
+    subgraph Core["⚙️ Core Engine"]
+        DS[Design System / 设计系统<br/>6 Tokens]
+        PC[Pattern Catalog / 模式目录<br/>13 Patterns]
+        WF[Workflow Engine / 工作流引擎]
+    end
+
+    subgraph Craft["🛡️ Craft Discipline v3.0"]
+        CR[7 Craft Rules / 7条工艺规则]
+        SC[State Coverage / 状态覆盖<br/>5 States + 8 Input States]
+        FV[Form Validation / 表单验证]
+    end
+
+    subgraph Critique["🔍 Critique System"]
+        C5[5-Dimension Self-Critique / 五维评审]
+        RS[Radar Chart / 雷达图]
+        DL[DevLoop / 迭代优化]
+    end
+
+    subgraph Output["📤 Output"]
+        H[Single-File HTML / 零依赖单文件]
+        Q[Quality Score ≥ 4 / 质量分 ≥ 4]
+    end
+
+    U --> P
+    U --> KN
+    P --> DS & PC
+    DS & PC --> WF
+    WF --> CR
+    CR --> SC & FV
+    SC & FV --> C5
+    C5 --> RS --> DL
+    DL -->|Score < 4| CR
+    DL -->|Score ≥ 4| H
+    H --> Q
+
+    style Input fill:#fafaf7,stroke:#e8e5df
+    style Core fill:#ffffff,stroke:#c96442
+    style Craft fill:#ffe8e0,stroke:#b04a3f
+    style Critique fill:#fff5f0,stroke:#c96442
+    style Output fill:#f0f7ec,stroke:#788c5d
+```
+
+---
+
+## Workflow Pipeline / 工作流管道
+
+```mermaid
+flowchart LR
+    S0[Step 0 / Pre-flight / 预飞检查] --> S1
+    S1[Step 1 / Aesthetic Direction / 美学方向<br/>+ Tuning Knobs] --> S2
+    S2[Step 2 / Write Artifact / 编写工件<br/>+ Craft Rules Check] --> S3
+    S3[Step 3 / Self-Critique / 五维自评] --> S4{Score ≥ 4?}
+    S4 -->|No| S5[DevLoop / 迭代修复]
+    S5 --> S2
+    S4 -->|Yes| S6[Step 4 / Emit / 输出]
+
+    style S0 fill:#fafaf7,stroke:#e8e5df
+    style S1 fill:#ffffff,stroke:#c96442
+    style S2 fill:#ffffff,stroke:#c96442
+    style S3 fill:#fff5f0,stroke:#c96442
+    style S4 fill:#fff5f0,stroke:#c96442
+    style S5 fill:#fdf2f0,stroke:#b04a3f
+    style S6 fill:#f0f7ec,stroke:#788c5d
+```
+
+---
+
+## Critique System Architecture / 评审系统架构
+
+```mermaid
+graph LR
+    subgraph Dimensions["5 Dimensions / 五个维度"]
+        D1[Philosophy Consistency / 哲学一致性]
+        D2[Visual Hierarchy / 视觉层级]
+        D3[Detail Execution / 细节执行]
+        D4[Functionality / 功能性]
+        D5[Innovation / 创新性]
+    end
+
+    subgraph Scoring["Band Scoring / 波段评分"]
+        B1[0-4: Broken / 破碎]
+        B2[5-6: Functional / 可用]
+        B3[7-8: Strong / 强]
+        B4[9-10: Exceptional / 卓越]
+    end
+
+    subgraph Action["Action Categories / 动作分类"]
+        K[Keep / 保留]
+        F[Fix / 修复]
+        QW[Quick-wins / 快速优化]
+    end
+
+    D1 & D2 & D3 & D4 & D5 --> Scoring
+    Scoring --> Action
+
+    style Dimensions fill:#fafaf7,stroke:#e8e5df
+    style Scoring fill:#ffffff,stroke:#c96442
+    style Action fill:#f0f7ec,stroke:#788c5d
+```
+
+---
+
+## Pattern Catalog Map / 模式目录图
+
+```mermaid
+mindmap
+  root((Pattern Catalog<br/>模式目录))
+    Comparison / 对比
+      1. Side-by-Side
+      2. Annotated Diff
+    Diagram / 图表
+      3. Module Map
+      8. Flowchart
+      9. SVG Illustration
+    Document / 文档
+      6. Interactive Explainer
+      7. Status Report
+    Presentation / 演示
+      5. Slide Deck
+        36 themes
+        Canvas FX
+    System / 系统
+      4. Living Design System
+    Interactive / 交互
+      10. Custom Editor
+      11. Dashboard
+      12. Live Artifact Dashboard
+      13. Frame Effects
+```
 
 ---
 
@@ -37,23 +190,66 @@ Every artifact is / 每个工件：
 
 ---
 
-## What's New in v2.1 / v2.1 新特性
+## Changelog / 更新日志
 
-> "From generate once to generate, critique, refine, converge."
-> "从一次生成到生成、评审、优化、收敛。"
+### v3.0 (2026-06-29) — Craft Discipline Revolution / 工艺纪律革命
 
-v2.1 introduces the **Critique Revolution** — the skill no longer just generates HTML and hopes for the best. It now systematically critiques its own output across 5 dimensions using radar chart visualization, band scoring (0-10), and evidence-cited judgments, then iterates via a **DevLoop** until quality converges (score ≥ 4).
+**新增：**
+- 7 条可检查工艺规则（Anti-AI-Slop / Color / Typography / Typography Hierarchy / Animation / Accessibility / UX Laws），全部基于一手研究并引用来源
+- 状态覆盖契约（5 种必须 UI 状态：Loading / Empty / Error / Populated / Edge）
+- 表单验证状态机（8 种输入状态 + 4 条验证时序规则）
+- 三旋钮调参接口（VARIANCE / MOTION / DENSITY），用户可通过参数微调输出风格
+- 美学方向品牌参照锚定，每个方向附带 1-2 个真实品牌参考
+- 适用边界声明，明确 Skill 不适用于需要身份验证/支付/后端逻辑的场景
 
-v2.1 引入了**评审革命**——这个技能不再只是生成 HTML 然后听天由命。它现在通过雷达图可视化、波段评分（0-10）和基于证据的判断，系统地评审自己的输出，然后通过 **DevLoop** 迭代直到质量收敛（分数 ≥ 4）。
+**优化：**
+- SKILL.md 结构瘦身（1421 行 → ~400 行），核心规则自包含，详细资料移至 references/
+- P0 反模式从 10 条增至 15 条（新增：大写字母字距、展示文字负字距、serif 标题一致性、圆角卡片+彩色左边框、:user-invalid）
+- P1 反模式新增 6 条（标准模板、外部占位图 CDN、强调色使用频率、装饰动画、outline 移除、过早验证）
+- Accent Discipline 规则精确化：从"每屏 2 次"改为"每个视觉区域 2 次"
+- Pattern Catalog 增加内联定义，AI 无需跳转 references 即可理解模式意图
+- Craft Rule 3 (Typography) 增加 letter-spacing 强制规则和 three-weight 系统
+- Craft Rule 5 (Animation) 增加 duration 阈值表、curve vs spring 选择、动画决策树
+- Craft Rule 6 (Accessibility) 增加 WCAG 法律底线（EU/US 司法管辖区）、ARIA 纪律、TTT 注解
+- Craft Rule 7 (Laws of UX) 从 26 条一手研究中提炼可执行指令
+- 动画反常识修正（Skeleton 11% 更快 = FALSE，Doherty 400ms = FALSE，M3 curve 标注错误）
 
-### New Features / 新功能
+**修复：**
+- 6 令牌哲学与 16 色完整板冲突 → 统一为 6 令牌，完整板移至 references/palette-examples.md
+- Frontend Aesthetics Guidelines 与 Craft Rules 内容重复 → 删除重复段落
+- 模式之间缺少组合指导 → Decision Flow 增加跨模式组合规则
 
-- **Enhanced Critique System / 增强评审系统** — Radar chart visualization, band scoring (0-10), Keep/Fix/Quick-wins categorization with evidence-cited reasoning. / 雷达图可视化、波段评分（0-10）、Keep/Fix/Quick-wins 分类，附带基于证据的推理。
-- **DevLoop: Iterative Self-Improvement / DevLoop：迭代自我改进** — critique → fix → repeat until score ≥ 4. / 评审 → 修复 → 重复直到分数 ≥ 4。
-- **2 New Patterns / 2 个新模式** — Live Artifact Dashboard (#12) and Frame Effects (#13). / 实时工件仪表盘（#12）和视觉特效（#13）。
-- **Enhanced PPT/Slide Pattern / 增强 PPT/幻灯片模式** — 36 themes, 31 layouts, 15 full-deck templates, 27 CSS animations, 20 Canvas FX. / 36 套主题、31 种布局、15 个全 deck 模板、27 种 CSS 动画、20 种 Canvas FX。
-- **Scoring Discipline Rules / 评分纪律规则** — Anti-inflation: no averaging, no score inflation. / 反膨胀：禁止平均、禁止评分膨胀。
-- **Critique Report Output Contract / 评审报告输出契约** — Standardized critique report format. / 标准化评审报告格式。
+### v2.1 (2026-05-21) — Critique & Iteration / 评审与迭代
+
+**新增：**
+- 五维自评审系统（哲学一致性 / 视觉层级 / 细节执行 / 功能性 / 创新性）+ 雷达图可视化
+- DevLoop 迭代精炼机制（评审 → 修复 → 重复，最多 3 轮）
+- Pattern #12 Live Artifact Dashboard（实时仪表盘，模板+数据分离架构）
+- Pattern #13 Frame Effects（电影级视觉特效：Glitch 标题、Liquid 背景、Light Leak 等）
+- 评分纪律规则（禁止平均、禁止膨胀、基于证据）
+
+**优化：**
+- Pattern #5 Slide Deck 增强（演讲者备注 `<aside class="notes">`、键盘导航、进度指示器）
+- 5 维度评分从简单的 1-10 改为波段制（0-4 Broken / 5-6 Functional / 7-8 Strong / 9-10 Exceptional）
+
+### v2.0 (2026-05-20) — Integration / 整合
+
+**新增：**
+- 6 令牌设计系统（--bg / --surface / --fg / --muted / --border / --accent）
+- 11 种空间表达模式
+- P0/P1/P2 三级反模式质量体系
+
+**来源整合：**
+- html-effectiveness by Thariq Shihipar（模式库基础）
+- frontend-design by Anthropic（美学哲学）
+- open-design by OpenDesign（工程严谨性）
+
+### v1.0 (2026-05) — Initial / 初始版本
+
+**新增：**
+- 基于 html-effectiveness 的初始模式库
+- 单文件零依赖 HTML 生成工作流
+- 基础设计系统和排版规则
 
 ---
 
@@ -81,6 +277,9 @@ cp -r html-skill-effectiveness ~/.claude/skills/
 ---
 
 ## Pattern Catalog / 模式目录
+
+> **Craft Rules apply to ALL patterns.** Before emitting any pattern, run through the Craft Rules checklist. No pattern is exempt from P0 rules.
+> **工艺规则适用于所有模式。** 在输出任何模式前，必须通过工艺规则检查清单。无模式可豁免 P0 规则。
 
 | # | Pattern / 模式 | Use For / 用于 |
 |---|---------|---------|
@@ -111,7 +310,7 @@ cp -r html-skill-effectiveness ~/.claude/skills/
   --fg:      #1a1916;   /* primary text / 主文本 */
   --muted:   #6b6964;   /* secondary text / 次要文本 */
   --border:  #e8e5df;   /* dividers / 分隔线 */
-  --accent:  #c96442;   /* one accent, max 2× per screen / 强调色，每屏最多 2 次 */
+  --accent:  #c96442;   /* one accent, max 2× per visual region / 强调色，每个视觉区域最多 2 次 */
 }
 ```
 
@@ -129,9 +328,9 @@ Everything else derives from these via `color-mix()`. No raw hex outside `:root`
 | Code / 代码 | Mono | 13px |
 | Eyebrow / 标签 | Mono | 11px, uppercase |
 
-**No Inter/Roboto/Arial as display fonts.** Choose distinctive, beautiful typefaces.
+**Use system font fallback chains.** Prioritize built-in system fonts over external Google Fonts.
 
-**禁止将 Inter/Roboto/Arial 用作展示字体。** 选择独特、美观的字体。
+**优先使用系统字体 fallback 链。** 优先使用系统内置字体而非外部 Google 字体。
 
 ---
 
@@ -145,21 +344,25 @@ Everything else derives from these via `color-mix()`. No raw hex outside `:root`
 
 ### Step 1 — Choose Aesthetic Direction / 选择美学方向
 - Purpose, Tone, Constraints, Differentiation / 目的、调性、约束、差异化
+- **Tuning Knobs / 三旋钮调参**: VARIANCE (1-10) / MOTION (1-10) / DENSITY (1-10), default 5
+- **Brand Anchors / 品牌参照**: Each direction has 1-2 real brand references
 
 ### Step 2 — Write the Artifact / 编写工件
 - Copy HTML Structure Template / 复制 HTML 结构模板
-- Define tokens in `:root` / 在 `:root` 中定义令牌
+- Define 6 tokens in `:root` / 在 `:root` 中定义 6 令牌
 - Build sections from Pattern Catalog / 从模式目录构建章节
+- Run Craft Rules check / 运行工艺规则检查
 
-### Step 3 — Critique / 评审 (NEW in v2.1 / v2.1 新增)
+### Step 3 — Critique / 评审
 - Run 5-Dimension Self-Critique / 运行五维自评
 - Band scoring (0-10) per dimension / 每维度波段评分（0-10）
 - Generate Keep/Fix/Quick-wins report / 生成 Keep/Fix/Quick-wins 报告
 
-### Step 4 — DevLoop / DevLoop (NEW in v2.1 / v2.1 新增)
+### Step 4 — DevLoop / 迭代优化
 - Apply Keep items / 保留 Keep 项
 - Address Fix items / 处理 Fix 项
 - Re-score after fixes / 修复后重新评分
+- Max 3 iterations / 最多 3 轮
 
 ### Step 5 — Emit / 输出
 ```
@@ -173,25 +376,36 @@ Everything else derives from these via `color-mix()`. No raw hex outside `:root`
 
 ## Quality Standards / 质量标准
 
-### P0 — Must Never Happen / 绝对不能发生
-- No external CSS/JS files / 禁止外部 CSS/JS 文件
-- No CDN libraries / 禁止 CDN 库
-- No raw hex outside `:root` / `:root` 外禁止原始十六进制
-- No purple/violet gradient backgrounds / 禁止紫色/紫罗兰渐变背景
-- No emoji as feature icons / 禁止用表情符号作为功能图标
-- No invented metrics / 禁止虚构指标
-- No filler copy / 禁止填充文本
-- `data-od-id` on every `<section>` / 每个 `<section>` 必须有 `data-od-id`
-- Mobile reflow works (≤920px) / 移动端重排正常（≤920px）
+### P0 — Must Never Happen (15 items) / 绝对不能发生（15 条）
+1. No external CSS/JS files / 禁止外部 CSS/JS 文件
+2. No CDN libraries / 禁止 CDN 库
+3. No raw hex outside `:root` / `:root` 外禁止原始十六进制
+4. No purple/violet/indigo gradient backgrounds / 禁止紫色/紫罗兰/靛蓝渐变背景
+5. No default Tailwind indigo (`#6366f1`, `#8b5cf6`) as accent / 禁止默认 Tailwind 靛蓝作强调色
+6. No emoji as feature icons / 禁止用表情符号作为功能图标
+7. No invented metrics / 禁止虚构指标
+8. No filler copy / 禁止填充文本
+9. `data-od-id` on every `<section>` / 每个 `<section>` 必须有 `data-od-id`
+10. Mobile reflow works (≤920px) / 移动端重排正常（≤920px）
+11. ALL CAPS must have `letter-spacing` ≥ `0.06em` / 大写字母必须有字距
+12. Display text (≥32px) must have negative tracking / 展示文字必须有负字距
+13. Display text must use `var(--font-display)`, not system-sans / 展示文字必须使用 `var(--font-display)`
+14. No rounded card + colored left-border accent / 禁止圆角卡片+彩色左边框
+15. Style off `:user-invalid`, not `:invalid` / 用 `:user-invalid` 而非 `:invalid`
 
-### P1 — Should Avoid / 应该避免
+### P1 — Should Avoid (10 items) / 应该避免（10 条）
 - Walls of text / 文字墙
 - Pure black/white / 纯黑/纯白
-- Over-animation / 过度动画
+- Over-animation (max 500ms non-cross-screen) / 过度动画
 - Generic AI aesthetics / 通用 AI 美学
 - Inter/Roboto as display fonts / Inter/Roboto 作为展示字体
+- Standard Hero→Features→Pricing→FAQ→CTA without variation / 无变化的标准模板
+- External placeholder image CDNs / 外部占位图 CDN
+- `var(--accent)` used 6+ times (cap: 2 per visual region) / 强调色每个视觉区域超过 2 次
+- `outline: none` without replacement / 无替代的 focus outline 移除
+- Validate on first keystroke / 首次击键就验证
 
-### Scoring Discipline (NEW in v2.1) / 评分纪律（v2.1 新增）
+### Scoring Discipline / 评分纪律
 - **No averaging / 禁止平均**: each dimension scored independently / 每维度独立评分
 - **No inflation / 禁止膨胀**: 7+ requires exceptional evidence / 7+ 需要非凡证据
 - **Evidence-cited / 基于证据**: every score must cite specific observations / 每分必须引用具体观察
@@ -202,18 +416,26 @@ Everything else derives from these via `color-mix()`. No raw hex outside `:root`
 
 ```
 html-skill-effectiveness/
-├── SKILL.md                    # Core skill definition / 核心技能定义
+├── SKILL.md                    # Core skill definition (v3.0) / 核心技能定义
 ├── README.md                   # This file / 本文件
 ├── LICENSE.txt                 # Apache 2.0
 ├── BLOG.md                     # Detailed blog post / 详细博客文章
 ├── INTEGRATION_SUMMARY.md      # Version integration history / 版本整合历史
+├── RELEASE-v3.0.md             # v3.0 release notes / v3.0 发布说明
 ├── indexxxxxxx_en.html         # English showcase / 英文展示页
 ├── indexxxxxxx_zh.html         # Chinese showcase / 中文展示页
 └── references/
     ├── pattern-examples.md     # Code snippets by pattern / 按模式的代码片段
     ├── complete-examples.md    # Full HTML examples / 完整 HTML 示例
     ├── critique-guide.md       # Complete critique system guide / 完整评审系统指南
-    └── frame-effects.md        # Frame Effects pattern reference / 视觉特效模式参考
+    ├── frame-effects.md        # Frame Effects pattern reference / 视觉特效模式参考
+    ├── craft-rules-reference.md # Craft rules quick reference / 工艺规则快速参考
+    ├── palette-examples.md     # 16色完整板 + 4替代方案 / 16-color palette + 4 alternatives
+    ├── style-recipes.md        # 美学方向×品牌参照映射表 / Aesthetic direction × brand reference map
+    ├── presenter-mode.md       # BroadcastChannel 双窗口演讲者模式 / Dual-window presenter mode
+    ├── ux-laws-reference.md    # 26条UX法则完整版 / Complete 26 UX laws
+    ├── accessibility-detail.md # WCAG合规细节 / WCAG compliance details
+    └── device-frames.md        # CSS设备外框代码 / CSS device frame code
 ```
 
 ---
@@ -228,7 +450,7 @@ html-skill-effectiveness/
 - "Draw a flowchart of this process" / "绘制这个流程的流程图"
 - "Show me component variants in HTML" / "在 HTML 中展示组件变体"
 - "Make this HTML prettier / more professional" / "让这个 HTML 更美观/更专业"
-- "Create a dashboard for [metrics]" / "为 [指标] 创建仪表盘"
+- "Create a dashboard for [metrics] --variance=7 --motion=4 --density=5" / "为 [指标] 创建仪表盘"
 - "Make a presentation with speaker notes" / "制作带演讲者备注的演示"
 - "Critique this HTML output and suggest improvements" / "评审这个 HTML 输出并建议改进"
 - "Add a live artifact dashboard with refreshable data" / "添加带可刷新数据的实时仪表盘"
@@ -240,7 +462,7 @@ html-skill-effectiveness/
 
 - **Original concept / 原版概念**: [The Unreasonable Effectiveness of HTML](https://github.com/ThariqS/html-effectiveness) by Thariq Shihipar
 - **Aesthetic philosophy / 美学哲学**: [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) by Anthropic
-- **Engineering rigor & critique system / 工程严谨性与评审系统**: [open-design](https://github.com/opendesign) by OpenDesign
+- **Craft discipline system / 工艺纪律系统**: [open-design](https://github.com/opendesign) by OpenDesign — anti-ai-slop, color, typography, typography-hierarchy, animation-discipline, accessibility-baseline, laws-of-ux, state-coverage, form-validation craft rules / 反AI味、色彩、排版、排版层级、动画纪律、可访问性底线、UX法则、状态覆盖、表单验证工艺规则
 - **PPT/Slide enhancement / PPT/幻灯片增强**: [html-ppt](https://github.com/opendesign) — 36 themes, 31 layouts, canvas FX / 36 套主题、31 种布局、Canvas FX
 - **Integration & enhancement / 整合与增强**: [Yardon](https://github.com/YardonYan)
 
@@ -249,3 +471,4 @@ html-skill-effectiveness/
 ## License / 许可证
 
 Apache 2.0 — see [LICENSE.txt](LICENSE.txt)
+*（内容由AI生成，仅供参考）*

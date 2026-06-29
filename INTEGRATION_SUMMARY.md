@@ -280,3 +280,96 @@ v2.1 的核心变革是将 **open-design-main** 的成熟 Critique 系统和 **h
 - **Critique 系统 & DevLoop**: [open-design-main](https://github.com/opendesign) by OpenDesign — 雷达图 critique、乐队评分、DevLoop 收敛
 - **PPT/Slide 增强**: [html-ppt](https://github.com/opendesign) — 36 主题、31 布局、Canvas FX、Presenter Mode
 - **持续增强**: 基于 open-design-main 的 critique 方法论和 html-ppt 的演示系统的最佳实践
+
+---
+
+# v3.0 更新 (May 2026) - Craft Discipline Revolution
+
+## 整合概述
+
+v3.0 的核心变革是将 **open-design-main** 的完整工艺纪律系统（7 个 craft rule 文件 + 2 个契约文件）深度整合进 html-skill-effectiveness。这不是一次"加几个 feature"的增量更新，而是一次**设计纪律层面的升级**——从"凭感觉检查"到"基于一手研究的可执行约束"。
+
+## 对比分析
+
+| 维度 | html-skill-effectiveness v2.1 | open-design craft rules | 整合决策 |
+|------|------|------|------|
+| **反AI味** | P0 简单列表（10条） | 七大罪 + 软信号 + 灵魂公式(80/20) | 增强P0至15条 + 灵魂公式 |
+| **色彩** | 6核心令牌 + 调色板 | 四层调色板结构 + 强调色纪律 + 对比度门控 | 增加四层结构 + 强调色2次/屏上限 |
+| **排版** | 字体/尺寸表 | 乘法刻度 + letter-spacing规则 + 三权重体系 | 增加 letter-spacing 强制规则 + 三权重 |
+| **排版层级** | 无 | 五向量 + 三级模型 + 受控违规 + 编辑排版 | 新增完整层级章节 |
+| **动画** | 基础CSS hover/transition | 精确时长阈值 + 曲线vs弹簧 + 减少动画 + 3个民间传说纠正 | 新增 animation-discipline 完整规则 |
+| **可访问性** | 6行简单规则 | WCAG法律底线(4司法管辖区) + 对比度 + 触摸目标 + ARIA纪律 + 常见错误 | 全面增强，增加法律底线和ARIA纪律 |
+| **UX法则** | 无 | 26条可执行法则（格式塔/注意/决策/记忆/交互/行为） | 新增 UX Laws 章节 |
+| **状态覆盖** | 无 | 5必须状态 + 加载时长指示器 + 空状态/错误状态组成 | 新增 State Coverage 章节 |
+| **表单验证** | 无 | 8状态输入状态机 + 4条验证时序规则 + `:user-invalid` | 新增 Form Validation 章节 |
+
+### 整合决策详解
+
+1. **Anti-AI-Slop（反AI味）**：v2.1 的 P0 列表是好的起点，但不够精确。v3.0 整合了 open-design 的七大罪——每条都解释了"为什么错"和"怎么修"。灵魂公式（80%成熟模式 + 20%独特选择）特别有价值，它给出了"如何不AI味"的可执行答案。P0 从 10 条增至 15 条。
+
+2. **Color（色彩）**：四层调色板结构（中性70-90%、强调5-10%、语义0-5%、效果<1%）是 open-design 最实用的贡献之一。v2.1 有 6 个核心令牌但没有层级约束。v3.0 增加了四层结构，并强制"强调色每屏最多2处可见使用"——这是解决 AI 输出中最常见问题的硬规则。
+
+3. **Typography（排版）**：letter-spacing 规则是 open-design 最被低估的贡献——"ALL CAPS 必须 ≥0.06em"、"display 必须 -0.02em 到 -0.03em"——这两条是区分"业余"和"专业"的最可靠标志。三权重体系（Read/Emphasize/Announce）简化了权重选择。
+
+4. **Typography Hierarchy（排版层级）**：五向量模型（Scale/Weight/Spacing/Tracking/Alignment）是 v3.0 最重要的概念性贡献。它解释了为什么"只靠字号大小"的层级是脆弱的——任何布局约束都能破坏它。三级工作模型（Primary/Secondary/Tertiary）为设计决策提供了清晰框架。
+
+5. **Animation Discipline（动画纪律）**：150ms 默认时长、曲线vs弹簧的选择、`prefers-reduced-motion` 的精确规则——这些都是基于一手研究的（Tversky 2002, Material 3, IBM Carbon）。三个民间传说纠正（skeleton 11%更快、Doherty 400ms、M2 曲线标为 M3）特别有价值。
+
+6. **Accessibility Baseline（可访问性底线）**：WCAG 法律底线因司法管辖区而异——这个事实被绝大多数 AI 设计指南忽略。v3.0 给出了 4 个司法管辖区的精确标准。ARIA 纪律（WebAIM 2026: ARIA 页面平均 59.1 错误 vs 非 ARIA 42 错误）是反直觉但关键的数据。
+
+7. **Laws of UX（UX法则）**：26 条可执行法则，每条都有明确的执行指令。精选了最实用的：格式塔法则（感知）、注意法则、决策法则（Hick/选择过载/帕累托）、记忆法则（Cowan 4±1/Peak-End）、交互法则（Fitts/Doherty/Postel）、行为法则（Jakob/认知负荷/目标梯度）。
+
+8. **State Coverage（状态覆盖）**：5 必须状态（Loading/Empty/Error/Populated/Edge）是 AI 生成 UI 中最常见的缺失——AI 只画"数据存在"的状态。v3.0 增加了加载时长→指示器对照表和错误状态三问（发生了什么/为什么/怎么办）。
+
+9. **Form Validation（表单验证）**：8 状态输入状态机和 4 条验证时序规则解决了 AI 生成表单中最常见的错误——过早验证、`:invalid` 不分时机地显示红框、错误信息过于笼统。
+
+## v3.0 具体更新
+
+### 1. Craft Rules 章节（新增约 19KB）
+- 7 个子章节 + State Coverage + Form Validation
+- 所有规则基于一手研究，引用具体来源
+
+### 2. P0 Anti-Patterns 增强（10→15 条）
+新增：
+- ALL CAPS 无 letter-spacing
+- display 文字无负 tracking
+- serif 约束下用 sans-serif 做展示
+- 圆角卡片+彩色左边框
+- `:invalid` 不用 `:user-invalid`
+
+### 3. P1 Anti-Patterns 增强（新增 6 条）
+新增：
+- 标准 Hero→Features 模板无变化
+- 外部占位图 CDN
+- 强调色超过 2 次/屏
+- 装饰性动画
+- `outline: none` 无替代
+- 首次击键就验证
+
+### 4. Design System 微调
+- 在 Craft Rules 中增加四层调色板结构
+- 在 Craft Rules 中增加 letter-spacing 规则
+- 在 Craft Rules 中增加三权重体系
+
+### 5. 新增文件
+- `RELEASE-v3.0.md` — 发布说明
+- `references/craft-rules-reference.md` — 工艺规则快速参考
+
+### 6. 已更新文件
+- `SKILL.md` — 核心技能定义（42KB → 63KB）
+- `README.md` — 项目说明
+- `BLOG.md` — 博客文章
+- `INTEGRATION_SUMMARY.md` — 本文件
+
+## 版本信息
+
+- **版本**: v3.0
+- **更新日期**: 2026-05-21
+- **作者**: Yardon (https://github.com/YardonYan)
+- **许可证**: Apache 2.0
+
+## v3.0 致谢
+
+- **Craft Rules 系统**: [open-design-main](https://github.com/opendesign) by OpenDesign — anti-ai-slop, color, typography, typography-hierarchy, animation-discipline, accessibility-baseline, laws-of-ux, state-coverage, form-validation
+- **研究来源**: Tversky/Morrison/Bétrancourt 2002, Bringhurst *Elements of Typographic Style*, WCAG 2.2, WebAIM Million 2026, Baymard 2024, Material 3 motion tokens, ARIA APG, IBM Carbon Motion, Apple SwiftUI Animation API
+- **前序版本**: v2.1 Critique Revolution, v2.0 设计系统整合, v1.0 html-effectiveness 原版
