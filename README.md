@@ -1,22 +1,25 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 263ae02d9b82b898f7b6446bc49bf3dd_cdb0659373c711f1b2f55254006c9bbf
-    ReservedCode1: 5+W58LIUDfkzJOe2295qMidlVIzvAsGg3Jgop3jQgGj8EPka+FH3863e6+AxwFF71iWOYvecwKC0PMj88orvkBiU+x7LkXxDMMxTyvRJat+FnkJIbTunFxfaF7LvpTvH6gSGgMVz/4lZurKWaEckqBhMWevffPeAmg5N+PGL/RfXCivDKv5aG57Xa+0=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 263ae02d9b82b898f7b6446bc49bf3dd_cdb0659373c711f1b2f55254006c9bbf
-    ReservedCode2: 5+W58LIUDfkzJOe2295qMidlVIzvAsGg3Jgop3jQgGj8EPka+FH3863e6+AxwFF71iWOYvecwKC0PMj88orvkBiU+x7LkXxDMMxTyvRJat+FnkJIbTunFxfaF7LvpTvH6gSGgMVz/4lZurKWaEckqBhMWevffPeAmg5N+PGL/RfXCivDKv5aG57Xa+0=
----
-
-# html-effectiveness / HTML 效能
+# html-skill-effectiveness / HTML 效能工艺
 
 > **Trade documents people skim for documents people actually read.**
 > **把人们略读的文档变成人们真正会阅读的文档。**
 
-A skill for generating beautiful, self-contained, single-file HTML artifacts. No build step. No dependencies. Open directly in a browser.
+**[html-skill-effectiveness](https://github.com/YardonYan/html-skill-effectiveness)** is an AI agent skill that teaches LLMs to generate **discipline-driven, quality-controlled, single-file HTML artifacts**. Built for Claude and OpenClaw, it transforms plain text into visually polished HTML outputs — comparisons, architecture diagrams, dashboards, slide decks, code diffs, flowcharts, and more.
 
-一个用于生成美观、自包含、单文件 HTML 工件的技能。无需构建步骤，零依赖，直接在浏览器中打开。
+Unlike generic "make me an HTML page" prompts, this skill enforces a strict 5-step workflow: **Pre-flight** (pattern matching) → **Aesthetic Direction** (brand-anchored style selection, plus 3 tuning knobs: VARIANCE / MOTION / DENSITY) → **Write** (with 7 craft rules checking for anti-AI-slop, color discipline, typography hierarchy, animation thresholds, accessibility, and UX law compliance) → **5-Dimension Self-Critique** (Philosophy Consistency, Visual Hierarchy, Detail Execution, Functionality, Innovation, scored 0-10 with radar chart visualization) → **DevLoop** (iterate up to 3 rounds until quality score ≥ 4) → **Emit**.
+
+At its core are **7 Craft Rules** (Anti-AI-Slop, Color, Typography, Typography Hierarchy, Animation, Accessibility, UX Laws), a **6-token design system** (--bg / --surface / --fg / --muted / --border / --accent), **13 proven spatial patterns** (Comparison, Diff, Architecture, Design System, Slide Deck, Interactive Explainer, Status Report, Flowchart, SVG Illustration, Custom Editor, Dashboard, Live Artifact Dashboard, Frame Effects), full **state coverage** (5 UI states + 8 input states), a **form validation state machine** with 4 timing rules, and a **P0 15-item + P1 10-item quality checklist** that catches AI slop before output.
+
+Every artifact is a single HTML file with inline CSS and JS, zero external dependencies, openable directly in any browser.
+
+---
+
+**[html-skill-effectiveness](https://github.com/YardonYan/html-skill-effectiveness)** 是一个 AI Agent 技能，教大模型生成**受工艺纪律约束、质量受控、单文件零依赖的 HTML 工件**。专为 Claude 和 OpenClaw 设计，能将纯文本转化为视觉精美的 HTML 输出——对比表、架构图、仪表盘、幻灯片、代码审查、流程图等。
+
+与"帮我生成一个 HTML 页面"这类泛化提示不同，本技能强制执行严格的 5 步工作流：**预飞检查**（模式匹配）→ **美学定向**（品牌参照锚定 + 三旋钮调参：VARIANCE 变化度 / MOTION 动效度 / DENSITY 密度）→ **编写工件**（7 条工艺规则实时检查：反AI味、色彩纪律、排版层级、动画阈值、可访问性、UX法则合规）→ **五维自评审**（哲学一致性、视觉层级、细节执行、功能性、创新性，0-10 波段评分 + 雷达图可视化）→ **DevLoop 迭代**（最多 3 轮修复直至质量分 ≥ 4）→ **输出**。
+
+技能内核包括：**7 条工艺规则**、**6 令牌设计系统**、**13 种经过验证的空间表达模式**、完整的**状态覆盖契约**（5 种 UI 状态 + 8 种输入状态）、**表单验证状态机**（含 4 条验证时序规则）、以及**P0 15 条 + P1 10 条质量检查清单**——在输出前拦截一切 AI 味道。
+
+每个工件都是单个 HTML 文件，内联 CSS 和 JS，零外部依赖，在任何浏览器中直接打开。
 
 [![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE.txt)
@@ -471,4 +474,3 @@ html-skill-effectiveness/
 ## License / 许可证
 
 Apache 2.0 — see [LICENSE.txt](LICENSE.txt)
-*（内容由AI生成，仅供参考）*
