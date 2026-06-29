@@ -261,6 +261,22 @@ Any AI coding assistant that reads markdown instruction files can use this skill
 
 ---
 
+## Live Demos / 在线演示
+
+Click to see rendered pages / 点击查看渲染效果：
+
+| Demo | Description / 描述 |
+|------|-----|
+| [Full Pattern Showcase / 完整模式展示](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/demo.html) | 13 patterns + v3.0 State Coverage, Form Validation, Tuning Knobs |
+| [Pattern Showcase (EN)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/indexxxxxxx_en.html) | English pattern showcase with v3.0 features |
+| [Pattern Showcase (ZH)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/indexxxxxxx_zh.html) | 中文模式展示 + v3.0 特性 |
+| [v2.1 Demo (Archived)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/test-v21-demo.html) | v2.1 Frame Effects + Live Dashboard archive |
+
+> Note: Links use raw.githack.com to render HTML directly. May take a few seconds on first load.
+> 说明：链接使用 raw.githack.com 直接渲染 HTML，首次加载可能需要几秒。
+
+---
+
 ## Pattern Catalog / 模式目录
 
 > **Craft Rules apply to ALL patterns.** Before emitting any pattern, run through the Craft Rules checklist. No pattern is exempt from P0 rules.
