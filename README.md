@@ -3,23 +3,19 @@
 > **Trade documents people skim for documents people actually read.**
 > **把人们略读的文档变成人们真正会阅读的文档。**
 
-**[html-skill-effectiveness](https://github.com/YardonYan/html-skill-effectiveness)** is an AI agent skill that teaches LLMs to generate **discipline-driven, quality-controlled, single-file HTML artifacts**. Built for Claude and OpenClaw, it transforms plain text into visually polished HTML outputs — comparisons, architecture diagrams, dashboards, slide decks, code diffs, flowcharts, and more.
+AI is great at writing Markdown. But Markdown is linear and limited — tables and bold text only go so far. This skill teaches AI to output **real HTML pages** instead: side-by-side comparisons that make trade-offs obvious, architecture diagrams you can zoom and click, slide decks with speaker notes, dashboards with live charts.
 
-Unlike generic "make me an HTML page" prompts, this skill enforces a strict 5-step workflow: **Pre-flight** (pattern matching) → **Aesthetic Direction** (brand-anchored style selection, plus 3 tuning knobs: VARIANCE / MOTION / DENSITY) → **Write** (with 7 craft rules checking for anti-AI-slop, color discipline, typography hierarchy, animation thresholds, accessibility, and UX law compliance) → **5-Dimension Self-Critique** (Philosophy Consistency, Visual Hierarchy, Detail Execution, Functionality, Innovation, scored 0-10 with radar chart visualization) → **DevLoop** (iterate up to 3 rounds until quality score ≥ 4) → **Emit**.
+What makes this different from "make me an HTML page"? Three things: **Craft Rules** — 7 hard rules that block AI slop before it reaches you (no purple gradients, no filler text, no fake numbers, real accessibility compliance); **Self-Critique** — the AI grades its own work on 5 dimensions and iterates until quality passes; **Zero Dependencies** — every artifact is a single HTML file, inline everything, opens in any browser with nothing to install.
 
-At its core are **7 Craft Rules** (Anti-AI-Slop, Color, Typography, Typography Hierarchy, Animation, Accessibility, UX Laws), a **6-token design system** (--bg / --surface / --fg / --muted / --border / --accent), **13 proven spatial patterns** (Comparison, Diff, Architecture, Design System, Slide Deck, Interactive Explainer, Status Report, Flowchart, SVG Illustration, Custom Editor, Dashboard, Live Artifact Dashboard, Frame Effects), full **state coverage** (5 UI states + 8 input states), a **form validation state machine** with 4 timing rules, and a **P0 15-item + P1 10-item quality checklist** that catches AI slop before output.
-
-Every artifact is a single HTML file with inline CSS and JS, zero external dependencies, openable directly in any browser.
+Built for Claude and OpenClaw. 13 battle-tested patterns. v3.0.
 
 ---
 
-**[html-skill-effectiveness](https://github.com/YardonYan/html-skill-effectiveness)** 是一个 AI Agent 技能，教大模型生成**受工艺纪律约束、质量受控、单文件零依赖的 HTML 工件**。专为 Claude 和 OpenClaw 设计，能将纯文本转化为视觉精美的 HTML 输出——对比表、架构图、仪表盘、幻灯片、代码审查、流程图等。
+AI 很擅长写 Markdown。但 Markdown 是线性的、能力有限——表格和加粗文字的表达力就到这了。这个技能教 AI 输出**真正的 HTML 页面**：让权衡一目了然的并排对比、可缩放点击的架构图、带演讲者备注的幻灯片、实时更新的数据仪表盘。
 
-与"帮我生成一个 HTML 页面"这类泛化提示不同，本技能强制执行严格的 5 步工作流：**预飞检查**（模式匹配）→ **美学定向**（品牌参照锚定 + 三旋钮调参：VARIANCE 变化度 / MOTION 动效度 / DENSITY 密度）→ **编写工件**（7 条工艺规则实时检查：反AI味、色彩纪律、排版层级、动画阈值、可访问性、UX法则合规）→ **五维自评审**（哲学一致性、视觉层级、细节执行、功能性、创新性，0-10 波段评分 + 雷达图可视化）→ **DevLoop 迭代**（最多 3 轮修复直至质量分 ≥ 4）→ **输出**。
+和"帮我写个 HTML 页面"有什么不同？三点：**工艺规则**——7 条硬性规则在 AI 输出前拦截所有 AI 味道（没有紫色渐变、没有假文案、没有虚构数字、强制执行可访问性标准）；**自我评审**——AI 先给自己打分，5 个维度，不及格就回去改，直到通过了才给你看；**零依赖**——每个工件就是单个 HTML 文件，全内联，任何浏览器直接打开，无需装任何东西。
 
-技能内核包括：**7 条工艺规则**、**6 令牌设计系统**、**13 种经过验证的空间表达模式**、完整的**状态覆盖契约**（5 种 UI 状态 + 8 种输入状态）、**表单验证状态机**（含 4 条验证时序规则）、以及**P0 15 条 + P1 10 条质量检查清单**——在输出前拦截一切 AI 味道。
-
-每个工件都是单个 HTML 文件，内联 CSS 和 JS，零外部依赖，在任何浏览器中直接打开。
+专为 Claude 和 OpenClaw 打造。13 种实战验证的模式。v3.0。
 
 [![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE.txt)
@@ -221,38 +217,6 @@ Every artifact is / 每个工件：
 - 6 令牌哲学与 16 色完整板冲突 → 统一为 6 令牌，完整板移至 references/palette-examples.md
 - Frontend Aesthetics Guidelines 与 Craft Rules 内容重复 → 删除重复段落
 - 模式之间缺少组合指导 → Decision Flow 增加跨模式组合规则
-
-### v2.1 (2026-05-21) — Critique & Iteration / 评审与迭代
-
-**新增：**
-- 五维自评审系统（哲学一致性 / 视觉层级 / 细节执行 / 功能性 / 创新性）+ 雷达图可视化
-- DevLoop 迭代精炼机制（评审 → 修复 → 重复，最多 3 轮）
-- Pattern #12 Live Artifact Dashboard（实时仪表盘，模板+数据分离架构）
-- Pattern #13 Frame Effects（电影级视觉特效：Glitch 标题、Liquid 背景、Light Leak 等）
-- 评分纪律规则（禁止平均、禁止膨胀、基于证据）
-
-**优化：**
-- Pattern #5 Slide Deck 增强（演讲者备注 `<aside class="notes">`、键盘导航、进度指示器）
-- 5 维度评分从简单的 1-10 改为波段制（0-4 Broken / 5-6 Functional / 7-8 Strong / 9-10 Exceptional）
-
-### v2.0 (2026-05-20) — Integration / 整合
-
-**新增：**
-- 6 令牌设计系统（--bg / --surface / --fg / --muted / --border / --accent）
-- 11 种空间表达模式
-- P0/P1/P2 三级反模式质量体系
-
-**来源整合：**
-- html-effectiveness by Thariq Shihipar（模式库基础）
-- frontend-design by Anthropic（美学哲学）
-- open-design by OpenDesign（工程严谨性）
-
-### v1.0 (2026-05) — Initial / 初始版本
-
-**新增：**
-- 基于 html-effectiveness 的初始模式库
-- 单文件零依赖 HTML 生成工作流
-- 基础设计系统和排版规则
 
 ---
 
