@@ -18,7 +18,7 @@ AI 很擅长写 Markdown。但 Markdown 是线性的、能力有限——表格�
 兼容任何支持 skill 文件的 AI 助手——Claude Code、OpenClaw、Cursor、Windsurf 等均可使用。13 种实战验证的模式。v3.0。
 
 [![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE.txt)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
 ---
 
@@ -267,10 +267,10 @@ Click to see rendered pages / 点击查看渲染效果：
 
 | Demo | Description / 描述 |
 |------|-----|
-| [Full Pattern Showcase / 完整模式展示](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/demo.html) | 13 patterns + v3.0 State Coverage, Form Validation, Tuning Knobs |
-| [Pattern Showcase (EN)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/indexxxxxxx_en.html) | English pattern showcase with v3.0 features |
-| [Pattern Showcase (ZH)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/indexxxxxxx_zh.html) | 中文模式展示 + v3.0 特性 |
-| [v2.1 Demo (Archived)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/test-v21-demo.html) | v2.1 Frame Effects + Live Dashboard archive |
+| [Full Pattern Showcase / 完整模式展示](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/demo.html) | 13 patterns + v3.0 State Coverage, Form Validation, Tuning Knobs |
+| [Pattern Showcase (EN)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/indexxxxxxx_en.html) | English pattern showcase with v3.0 features |
+| [Pattern Showcase (ZH)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/indexxxxxxx_zh.html) | 中文模式展示 + v3.0 特性 |
+| [v2.1 Demo (Archived)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/test-v21-demo.html) | v2.1 Frame Effects + Live Dashboard archive |
 
 > Note: Links use raw.githack.com to render HTML directly. May take a few seconds on first load.
 > 说明：链接使用 raw.githack.com 直接渲染 HTML，首次加载可能需要几秒。
@@ -419,24 +419,26 @@ Everything else derives from these via `color-mix()`. No raw hex outside `:root`
 html-skill-effectiveness/
 ├── SKILL.md                    # Core skill definition (v3.0) / 核心技能定义
 ├── README.md                   # This file / 本文件
-├── LICENSE.txt                 # Apache 2.0
-├── BLOG.md                     # Detailed blog post / 详细博客文章
-├── INTEGRATION_SUMMARY.md      # Version integration history / 版本整合历史
-├── RELEASE-v3.0.md             # v3.0 release notes / v3.0 发布说明
-├── indexxxxxxx_en.html         # English showcase / 英文展示页
-├── indexxxxxxx_zh.html         # Chinese showcase / 中文展示页
-└── references/
-    ├── pattern-examples.md     # Code snippets by pattern / 按模式的代码片段
-    ├── complete-examples.md    # Full HTML examples / 完整 HTML 示例
-    ├── critique-guide.md       # Complete critique system guide / 完整评审系统指南
-    ├── frame-effects.md        # Frame Effects pattern reference / 视觉特效模式参考
-    ├── craft-rules-reference.md # Craft rules quick reference / 工艺规则快速参考
-    ├── palette-examples.md     # 16色完整板 + 4替代方案 / 16-color palette + 4 alternatives
-    ├── style-recipes.md        # 美学方向×品牌参照映射表 / Aesthetic direction × brand reference map
-    ├── presenter-mode.md       # BroadcastChannel 双窗口演讲者模式 / Dual-window presenter mode
-    ├── ux-laws-reference.md    # 26条UX法则完整版 / Complete 26 UX laws
-    ├── accessibility-detail.md # WCAG合规细节 / WCAG compliance details
-    └── device-frames.md        # CSS设备外框代码 / CSS device frame code
+├── LICENSE                     # Apache 2.0
+├── references/                 # Reference library / 参考库
+│   ├── pattern-examples.md     # Code snippets by pattern / 按模式的代码片段
+│   ├── complete-examples.md    # Full HTML examples / 完整 HTML 示例
+│   ├── craft-rules-reference.md # Craft rules quick reference / 工艺规则快速参考
+│   ├── palette-examples.md     # 16色完整板 + 4替代方案 / 16-color palette + 4 alternatives
+│   ├── style-recipes.md        # 美学方向×品牌参照映射表 / Aesthetic direction × brand reference map
+│   ├── presenter-mode.md       # BroadcastChannel 双窗口演讲者模式 / Dual-window presenter mode
+│   ├── ux-laws-reference.md    # 26条UX法则完整版 / Complete 26 UX laws
+│   ├── accessibility-detail.md # WCAG合规细节 / WCAG compliance details
+│   └── device-frames.md        # CSS设备外框代码 / CSS device frame code
+└── docs/                       # Process docs & demos / 过程文档与演示
+    ├── demo.html               # Full pattern showcase / 完整模式展示
+    ├── indexxxxxxx_en.html     # English showcase / 英文展示页
+    ├── indexxxxxxx_zh.html     # Chinese showcase / 中文展示页
+    ├── test-v21-demo.html      # v2.1 demo archive / v2.1 演示归档
+    ├── BLOG.md                 # Detailed blog post / 详细博客文章
+    ├── INTEGRATION_SUMMARY.md  # Version integration history / 版本整合历史
+    ├── RELEASE-v2.1.md         # v2.1 release notes / v2.1 发布说明
+    └── RELEASE-v3.0.md         # v3.0 release notes / v3.0 发布说明
 ```
 
 ---
@@ -471,4 +473,4 @@ html-skill-effectiveness/
 
 ## License / 许可证
 
-Apache 2.0 — see [LICENSE.txt](LICENSE.txt)
+Apache 2.0 — see [LICENSE](LICENSE)
