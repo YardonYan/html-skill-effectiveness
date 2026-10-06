@@ -7,6 +7,13 @@ AIGC:
     ContentPropagator: 001191440300708461136T1XGW3
     PropagateID: 263ae02d9b82b898f7b6446bc49bf3dd_cbf4712373c711f1b2f55254006c9bbf
     ReservedCode2: FbSInpO68bnYUTPuXJ7DXd46E/iUC/dh0ApD0wwlrz10jhzDEXBd8NsnrE/1epPGq6LR1j8K2T8uFbwXfelmvh05wERiX9Pc3R+q+dQ/t1hsEcNubFlYIeAr07QRyuD2BPPT9nJKld7m0cdk923RENtaZMQgoK+klwIIc5tjgxpXKJJS9mgyPRbRvDU=
+name: html-skill-effectiveness
+description: >-
+  Generates self-contained single-file HTML artifacts — visually polished, zero dependencies, openable straight in a browser.
+  Covers 13 layout patterns, a 5-dimension critique system and DevLoop iteration, under 7 enforceable craft rules (anti-ai-slop, color, typography, hierarchy, animation, accessibility, laws-of-ux) plus state-coverage and form-validation contracts.
+  Use when the user asks for a report, comparison, dashboard, slide deck or interactive explainer delivered as one HTML file.
+  NOT for auth, payment, backend logic or real-time database scenarios — refuse and inform the user in those cases.
+license: Apache-2.0
 ---
 
 
