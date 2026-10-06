@@ -1,4 +1,36 @@
+<div align="center">
+
 # html-skill-effectiveness / HTML 效能工艺
+
+**把人们略读的文档，变成人们真正会阅读的文档**
+
+**Trade documents people skim for documents people actually read**
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/YardonYan/html-skill-effectiveness?style=social)](https://github.com/YardonYan/html-skill-effectiveness)
+[![Version](https://img.shields.io/badge/version-3.0-green)](#)
+[![Platform](https://img.shields.io/badge/platform-OpenClaw%20%C2%B7%20Claude%20Code%20%C2%B7%20Cursor-orange)](#quick-start)
+
+</div>
+
+---
+
+<div align="center">
+
+<a href="#intro"><b>这是什么</b></a> ·
+<a href="#quick-start"><b>快速开始</b></a> ·
+<a href="#demo"><b>在线演示</b></a> ·
+<a href="#patterns"><b>模式目录</b></a> ·
+<a href="#design"><b>设计系统</b></a> ·
+<a href="#structure"><b>项目结构</b></a> ·
+<a href="#example"><b>示例</b></a> ·
+<a href="#changelog"><b>更新日志</b></a> ·
+<a href="#license"><b>许可证</b></a>
+
+</div>
+
+---
+
 
 > **Trade documents people skim for documents people actually read.**
 > **把人们略读的文档变成人们真正会阅读的文档。**
@@ -17,8 +49,8 @@ AI 很擅长写 Markdown。但 Markdown 是线性的、能力有限——表格�
 
 兼容任何支持 skill 文件的 AI 助手——Claude Code、OpenClaw、Cursor、Windsurf 等均可使用。13 种实战验证的模式。v3.0。
 
-[![GitHub](https://img.shields.io/badge/GitHub-YardonYan%2Fhtml--skill--effectiveness-181717?logo=github)](https://github.com/YardonYan/html-skill-effectiveness)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
+
+---
 
 ---
 
@@ -164,6 +196,8 @@ mindmap
 
 ---
 
+<a id="intro"></a>
+
 ## What This Is / 这是什么
 
 AI defaults to Markdown. Markdown is linear text — great for reading sequentially, terrible for:
@@ -188,6 +222,8 @@ Every artifact is / 每个工件：
 - **Pattern-based / 基于模式** — 13 proven patterns for common AI output scenarios / 13 种经过验证的模式，覆盖常见 AI 输出场景
 
 ---
+
+<a id="changelog"></a>
 
 ## Changelog / 更新日志
 
@@ -219,6 +255,8 @@ Every artifact is / 每个工件：
 - 模式之间缺少组合指导 → Decision Flow 增加跨模式组合规则
 
 ---
+
+<a id="quick-start"></a>
 
 ## Installation / 安装
 
@@ -261,6 +299,8 @@ Any AI coding assistant that reads markdown instruction files can use this skill
 
 ---
 
+<a id="demo"></a>
+
 ## Live Demos / 在线演示
 
 Click to see rendered pages / 点击查看渲染效果：
@@ -268,14 +308,16 @@ Click to see rendered pages / 点击查看渲染效果：
 | Demo | Description / 描述 |
 |------|-----|
 | [Full Pattern Showcase / 完整模式展示](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/demo.html) | 13 patterns + v3.0 State Coverage, Form Validation, Tuning Knobs |
-| [Pattern Showcase (EN)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/indexxxxxxx_en.html) | English pattern showcase with v3.0 features |
-| [Pattern Showcase (ZH)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/indexxxxxxx_zh.html) | 中文模式展示 + v3.0 特性 |
+| [Pattern Showcase (EN)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/demo_en.html) | English pattern showcase with v3.0 features |
+| [Pattern Showcase (ZH)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/demo_zh.html) | 中文模式展示 + v3.0 特性 |
 | [v2.1 Demo (Archived)](https://raw.githack.com/YardonYan/html-skill-effectiveness/main/docs/test-v21-demo.html) | v2.1 Frame Effects + Live Dashboard archive |
 
 > Note: Links use raw.githack.com to render HTML directly. May take a few seconds on first load.
 > 说明：链接使用 raw.githack.com 直接渲染 HTML，首次加载可能需要几秒。
 
 ---
+
+<a id="patterns"></a>
 
 ## Pattern Catalog / 模式目录
 
@@ -299,6 +341,8 @@ Click to see rendered pages / 点击查看渲染效果：
 | 13 | **Frame Effects / 视觉特效** | Cinematic visual moments / 电影级视觉时刻 |
 
 ---
+
+<a id="design"></a>
 
 ## Design System / 设计系统
 
@@ -413,6 +457,8 @@ Everything else derives from these via `color-mix()`. No raw hex outside `:root`
 
 ---
 
+<a id="structure"></a>
+
 ## File Structure / 文件结构
 
 ```
@@ -432,8 +478,8 @@ html-skill-effectiveness/
 │   └── device-frames.md        # CSS设备外框代码 / CSS device frame code
 └── docs/                       # Process docs & demos / 过程文档与演示
     ├── demo.html               # Full pattern showcase / 完整模式展示
-    ├── indexxxxxxx_en.html     # English showcase / 英文展示页
-    ├── indexxxxxxx_zh.html     # Chinese showcase / 中文展示页
+    ├── demo_en.html     # English showcase / 英文展示页
+    ├── demo_zh.html     # Chinese showcase / 中文展示页
     ├── test-v21-demo.html      # v2.1 demo archive / v2.1 演示归档
     ├── BLOG.md                 # Detailed blog post / 详细博客文章
     ├── INTEGRATION_SUMMARY.md  # Version integration history / 版本整合历史
@@ -442,6 +488,8 @@ html-skill-effectiveness/
 ```
 
 ---
+
+<a id="example"></a>
 
 ## Example Prompts / 示例提示
 
@@ -471,6 +519,13 @@ html-skill-effectiveness/
 
 ---
 
+
+<a id="license"></a>
+
 ## License / 许可证
 
-Apache 2.0 — see [LICENSE](LICENSE)
+**Apache-2.0** — 自由使用、修改、分发，需保留署名与协议声明。详见 [LICENSE](LICENSE)。
+
+Free to use, modify and distribute, provided that attribution and the license notice are retained. See [LICENSE](LICENSE) for the full text.
+
+Copyright 2026 YardonYan
