@@ -320,22 +320,41 @@ node tools/install.mjs --ai workbuddy  # install into one
 node tools/install.mjs --ai all        # install into all of them
 ```
 
-### Where each assistant looks
+### Mainland China tools
 
 | Target id | Assistant | Global directory | Per-project directory |
 | --- | --- | --- | --- |
 | `workbuddy` | WorkBuddy | `~/.workbuddy/skills` | `.workbuddy/skills` |
-| `trae-cn` | TRAE China edition | `~/.trae-cn/skills` | `.trae-cn/skills` |
 | `codebuddy` | CodeBuddy | `~/.codebuddy/skills` | `.codebuddy/skills` |
+| `trae-cn` | TRAE China edition | `~/.trae-cn/skills` | `.trae-cn/skills` |
+| `qoder` | Qoder | `~/.qoder-cn/skills` | `.qoder/skills` |
+| `qwen` | Qwen Code | `~/.qwen/skills` | `.qwen/skills` |
+| `openclaw` | OpenClaw | `~/.openclaw/workspace/skills` | `.openclaw/skills` |
+| `cc-switch` | cc-switch | `~/.cc-switch/skills` | `.cc-switch/skills` |
+
+Qoder needs `/skills reload` or a session restart before it picks the skill up. OpenClaw additionally has a skill marketplace, SkillHub (Tencent Cloud hosted, `openclaw skill install <slug>`), reachable directly from mainland China.
+
+### Elsewhere
+
+| Target id | Assistant | Global directory | Per-project directory |
+| --- | --- | --- | --- |
 | `claude` | Claude Code | `~/.claude/skills` | `.claude/skills` |
 | `codex` | Codex CLI | `~/.codex/skills` | `.codex/skills` |
-| `openclaw` | OpenClaw | `~/.openclaw/workspace/skills` | `.openclaw/skills` |
-| `qwen` | Qwen Code | `~/.qwen/skills` | `.qwen/skills` |
-| `cc-switch` | cc-switch | `~/.cc-switch/skills` | `.cc-switch/skills` |
 | `cursor` | Cursor | `~/.cursor/skills` | `.cursor/skills` |
 | `agents` | Generic agent standard | `~/.agents/skills` | `.agents/skills` |
 
+These normally require access to international networks when used from mainland China.
+
 Without a flag it installs globally (available to every project); add `--project` to install into relative directories inside the current project, which suits committing it alongside the code.
+
+### Network notes for mainland China
+
+The installer only reads and writes local files — it makes no network calls. What network conditions actually affect is the demo pages and external assets:
+
+| Item | Situation |
+| --- | --- |
+| 演示页 | `docs/` the four demo pages have zero external dependencies and open directly |
+| 生成的工件 | the P0 rules forbid external CSS/JS and CDNs, so generated HTML opens fine |
 
 ### Installing as a plugin
 
@@ -343,8 +362,8 @@ The repository root carries four sets of plugin manifests, so a supporting assis
 
 | Assistant | Manifest | How |
 | --- | --- | --- |
-| Claude Code | `.claude-plugin/` | `/plugin marketplace add YardonYan/html-skill-effectiveness` then `/plugin install html-skill-effectiveness@YardonYan-html-skill-effectiveness` |
 | WorkBuddy / CodeBuddy | `.codebuddy-plugin/` | Add this repository path or URL under marketplace settings |
+| Claude Code | `.claude-plugin/` | `/plugin marketplace add YardonYan/html-skill-effectiveness` then `/plugin install html-skill-effectiveness@YardonYan-html-skill-effectiveness` |
 | Codex | `.codex-plugin/` | Follow Codex's plugin install flow, pointing at this repository |
 | Cursor | `.cursor-plugin/` | `/add-plugin`, or search the plugin marketplace |
 
