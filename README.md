@@ -43,6 +43,7 @@ AI 很擅长写 Markdown。但 Markdown 是线性的、表达力有限——表�
 - [质量标准](#质量标准)
 - [文件结构](#文件结构)
 - [示例提示](#示例提示)
+- [排错](#排错)
 - [版本历史](#版本历史)
 - [致谢](#致谢)
 - [许可证](#许可证)
@@ -237,7 +238,33 @@ AI 默认使用 Markdown。Markdown 是线性文本，适合顺序阅读，但�
 
 ## 安装
 
-### 快速开始（任意平台）
+### 用安装器（推荐）
+
+仓库自带一个零依赖的安装脚本，装到本机各个 AI 应用的 skills 目录，不需要手工拷贝：
+
+```bash
+node tools/install.mjs --list                 # 看有哪些目标可选
+node tools/install.mjs --ai workbuddy         # 装到 WorkBuddy
+node tools/install.mjs --ai all               # 装到全部目标
+node tools/install.mjs --ai all --dry-run     # 只预览，不写文件
+node tools/install.mjs --ai workbuddy --uninstall   # 卸载
+```
+
+已核对存在的目标：WorkBuddy、TRAE 国内版、CodeBuddy、Claude Code、Codex CLI、OpenClaw、Qwen Code、cc-switch。`cursor` 与通用 `.agents` 用的是通行约定，未在本机核对。
+
+### 作为插件安装（WorkBuddy / CodeBuddy / Claude Code）
+
+仓库根目录带 `.codebuddy-plugin/` 与 `.claude-plugin/` 两份清单，可以直接注册成一个「单插件市场」，在应用里按插件方式安装，不用手工拷目录。
+
+清单的字段名与取值是照着应用自带的插件清单写的，不是自己发明的格式。**文件格式已逐字段对照应用自带的市场核对；注册与加载的端到端流程未做验证**，注册入口以你所装版本的界面为准。
+
+改过 `SKILL.md` 的 name 或版本号之后重新生成：
+
+```bash
+node tools/build_plugins.mjs .
+```
+
+### 手工安装
 
 ```bash
 git clone https://github.com/YardonYan/html-skill-effectiveness.git
@@ -245,7 +272,7 @@ git clone https://github.com/YardonYan/html-skill-effectiveness.git
 
 或从 [Releases](https://github.com/YardonYan/html-skill-effectiveness/releases) 下载最新 ZIP。
 
-### OpenClaw
+**OpenClaw**
 
 ```bash
 cp -r html-skill-effectiveness ~/.qclaw/skills/
@@ -257,13 +284,13 @@ cp -r html-skill-effectiveness ~/.qclaw/skills/
 openclaw skill install html-effectiveness
 ```
 
-### Claude Code
+**Claude Code**
 
 ```bash
 cp -r html-skill-effectiveness ~/.claude/skills/
 ```
 
-### Cursor / 其他 AI 工具
+**Cursor / 其他 AI 工具**
 
 核心就是一个 `SKILL.md` 文件，复制或软链到你所用工具加载规则的位置即可：
 
@@ -403,13 +430,16 @@ cp SKILL.md ~/.cursorrules/html-effectiveness.md
 ```
 html-skill-effectiveness/
 ├── SKILL.md                     # 核心技能定义（v3.0）
+├── .codebuddy-plugin/              插件清单（WorkBuddy / CodeBuddy）
+├── .claude-plugin/                 插件清单（Claude Code）
 ├── README.md                    # 中文说明（本文件）
 ├── README.en.md                 # English README
 ├── LICENSE                      # Apache-2.0 许可证
 ├── assets/
 │   └── hero.png                 # README 门面图
 ├── tools/
-│   └── gen_readme_images.py     # 生成 README 配图（Pillow）
+│   ├── gen_readme_images.py     # 生成 README 配图（Pillow）
+│   └── build_plugins.mjs        # 生成插件清单
 ├── references/                  # 参考库
 │   ├── pattern-examples.md      # 按模式分类的代码片段
 │   ├── complete-examples.md     # 完整 HTML 示例
@@ -450,6 +480,70 @@ html-skill-effectiveness/
 - 「评审这个 HTML 输出并给出改进建议」
 - 「添加带可刷新数据的实时工件仪表盘」
 - 「应用视觉特效，让这个页面更有电影感」
+
+---
+
+<a id="排错"></a>
+
+## 排错
+
+### 装好了但对话里没反应
+
+按顺序查三件事：
+
+一、**`SKILL.md` 是否在技能目录的根层。** 正确结构是 `<应用技能目录>/html-skill-effectiveness/SKILL.md`。如果多套了一层目录，应用扫不到。
+
+二、**重启应用。** 多数应用只在启动时扫描技能目录。
+
+三、**确认目录是该应用真正会扫的那个。** 跑 `node tools/install.mjs --list` 看清单。
+
+### 对话里直接显示出 `<artifact ...>` 这段标签文字
+
+技能默认用 `<artifact identifier="slug" type="text/html" title="...">` 包裹输出，这是部分 AI 应用的约定格式。当前应用不认这个格式时，标签会当普通文字显示出来。
+
+解决办法是明确要求它落盘成文件：
+
+```
+不要用 artifact 包裹，直接写一个 index.html 文件到当前目录
+```
+
+### 生成的页面还是有一股 AI 味
+
+紫色渐变、emoji 当图标、圆角卡片配彩色左边框——这些都在 P0 规则里被明确禁止。如果还是出现，通常说明技能没真正接管，模型凭习惯在写。
+
+把要求说死：
+
+```
+按 html-skill-effectiveness 的工艺规则做，先给我 P0 检查清单的逐条结论，再写代码
+```
+
+技能被设计成写完要过一遍五维自评，让它把自评结果一并给出，就能看出规则有没有生效。
+
+### 想让输出换个风格
+
+用三旋钮调参，不用改提示词：
+
+| 旋钮 | 低（1-3） | 高（8-10） |
+|------|-----------|------------|
+| `--variance` | 居中、极简 | 大胆、不对称 |
+| `--motion` | 轻微微交互 | 复杂编排动效 |
+| `--density` | 宽松（24-96px 间距） | 紧凑（8-32px 间距，适合仪表盘） |
+
+```
+做一个数据仪表盘，--variance=7 --motion=3 --density=8
+```
+
+### 页面里的图表显示不出来
+
+技能有零依赖约束：禁止外部 CSS/JS 文件和 CDN 库。所以图表必须用内联 SVG 或 CSS 画，不能引 ECharts、Chart.js 这类库。如果生成的结果引了外部图表库，它违反了自己的 P0 规则，直接指出来让它改：
+
+```
+这个页面引了外部图表库，违反零依赖约束，改成内联 SVG
+```
+
+### 什么情况下不该用这个技能
+
+需要身份验证、支付、后端逻辑的场景不在适用范围内——技能只产出静态单文件 HTML，没有服务端。这类需求它做不了，也不该硬做。
 
 ---
 

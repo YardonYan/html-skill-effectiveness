@@ -1,0 +1,18 @@
+{
+  "name": "html-skill-effectiveness",
+  "version": "3.0",
+  "description": "Generates self-contained single-file HTML artifacts — visually polished, zero dependencies, openable straight in a browser.",
+  "author": {
+    "name": "Yardon",
+    "url": "https://github.com/YardonYan"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/YardonYan/html-skill-effectiveness",
+  "repository": "https://github.com/YardonYan/html-skill-effectiveness",
+  "category": "skill",
+  "keywords": [
+    "agent-skill",
+    "ai-skill",
+    "html-skill-effectiveness"
+  ]
+}

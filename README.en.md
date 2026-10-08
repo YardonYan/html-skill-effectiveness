@@ -43,6 +43,7 @@ Compatible with any AI agent that supports skill files — Claude Code, OpenClaw
 - [Quality Standards](#quality-standards)
 - [File Structure](#file-structure)
 - [Example Prompts](#example-prompts)
+- [Troubleshooting](#troubleshooting)
 - [Changelog](#changelog)
 - [Credits](#credits)
 - [License](#license)
@@ -237,7 +238,33 @@ Every artifact is:
 
 ## Installation
 
-### Quick Start (any platform)
+### Using the installer (recommended)
+
+The repo ships a zero-dependency installer that copies the skill into the skills directory of each AI app on your machine:
+
+```bash
+node tools/install.mjs --list                 # list available targets
+node tools/install.mjs --ai workbuddy         # install into WorkBuddy
+node tools/install.mjs --ai all               # every target
+node tools/install.mjs --ai all --dry-run     # preview only, writes nothing
+node tools/install.mjs --ai workbuddy --uninstall   # remove
+```
+
+Targets verified to exist on a real machine: WorkBuddy, TRAE China edition, CodeBuddy, Claude Code, Codex CLI, OpenClaw, Qwen Code, cc-switch. `cursor` and the generic `.agents` target use the conventional path and have not been verified.
+
+### Installing as a plugin (WorkBuddy / CodeBuddy / Claude Code)
+
+The repository root carries `.codebuddy-plugin/` and `.claude-plugin/` manifests, so it can be registered directly as a single-plugin marketplace and installed as a plugin rather than by copying directories.
+
+The field names and values follow the manifests shipped inside the apps themselves — this is not a format of my own invention. **The file format was checked field by field against the apps' own bundled marketplaces; the end-to-end register-and-load flow has not been verified.** Where you register it depends on the version you have.
+
+Regenerate the manifests after changing the `name` or version in `SKILL.md`:
+
+```bash
+node tools/build_plugins.mjs .
+```
+
+### Manual installation
 
 ```bash
 git clone https://github.com/YardonYan/html-skill-effectiveness.git
@@ -245,7 +272,7 @@ git clone https://github.com/YardonYan/html-skill-effectiveness.git
 
 Or download the latest ZIP from [Releases](https://github.com/YardonYan/html-skill-effectiveness/releases).
 
-### OpenClaw
+**OpenClaw**
 
 ```bash
 cp -r html-skill-effectiveness ~/.qclaw/skills/
@@ -257,13 +284,13 @@ Or use SkillHub:
 openclaw skill install html-effectiveness
 ```
 
-### Claude Code
+**Claude Code**
 
 ```bash
 cp -r html-skill-effectiveness ~/.claude/skills/
 ```
 
-### Cursor / other AI tools
+**Cursor / other AI tools**
 
 The core is a single `SKILL.md` — copy or symlink it wherever your tool loads rules from:
 
@@ -403,13 +430,16 @@ Apply the Keep items, address the Fix items, re-score. Maximum of 3 iterations.
 ```
 html-skill-effectiveness/
 ├── SKILL.md                     # Core skill definition (v3.0)
+├── .codebuddy-plugin/              Plugin manifests (WorkBuddy / CodeBuddy)
+├── .claude-plugin/                 Plugin manifests (Claude Code)
 ├── README.md                    # Chinese README
 ├── README.en.md                 # English README (this file)
 ├── LICENSE                      # Apache-2.0 licence
 ├── assets/
 │   └── hero.png                 # README hero image
 ├── tools/
-│   └── gen_readme_images.py     # Generates README images (Pillow)
+│   ├── gen_readme_images.py     # Generates README images (Pillow)
+│   └── build_plugins.mjs        # Generates plugin manifests
 ├── references/                  # Reference library
 │   ├── pattern-examples.md      # Code snippets by pattern
 │   ├── complete-examples.md     # Full HTML examples
@@ -450,6 +480,68 @@ html-skill-effectiveness/
 - "Critique this HTML output and suggest improvements"
 - "Add a live artifact dashboard with refreshable data"
 - "Apply frame effects to make this page cinematic"
+
+---
+
+<a id="troubleshooting"></a>
+
+## Troubleshooting
+
+### Installed, but the skill never fires
+
+Check three things, in order:
+
+1. **Is `SKILL.md` at the top level of the skill directory?** The correct shape is `<app-skills-dir>/html-skill-effectiveness/SKILL.md`. An extra directory layer hides it from the app.
+2. **Restart the app.** Most apps scan the skills directory only at startup.
+3. **Is that the directory the app actually scans?** Run `node tools/install.mjs --list`.
+
+### The chat prints a literal `<artifact ...>` tag
+
+The skill wraps its output in `<artifact identifier="slug" type="text/html" title="...">`, which is a convention some AI apps understand. Where the app does not, the tag shows up as plain text.
+
+Ask for a file instead:
+
+```
+Don't wrap it in an artifact — write an index.html file to the current directory
+```
+
+### The output still looks like generic AI slop
+
+Purple gradients, emoji as icons, rounded cards with coloured left borders — all explicitly banned by the P0 rules. When they still appear, the skill has not actually taken over and the model is writing from habit.
+
+Be explicit:
+
+```
+Follow the html-skill-effectiveness craft rules. Show me the P0 checklist results line by line before writing any code.
+```
+
+The skill runs a 5-dimension self-critique after writing; ask for those results and you can tell whether the rules took effect.
+
+### I want a different visual style
+
+Use the tuning knobs rather than rewriting the prompt:
+
+| Knob | Low (1–3) | High (8–10) |
+|------|-----------|-------------|
+| `--variance` | Centred, minimal | Bold, asymmetric |
+| `--motion` | Subtle micro-interactions | Complex choreography |
+| `--density` | Spacious (24–96px spacing) | Dense (8–32px, suits dashboards) |
+
+```
+Build a data dashboard, --variance=7 --motion=3 --density=8
+```
+
+### Charts in the page do not render
+
+The skill enforces zero dependencies: no external CSS/JS files and no CDN libraries. Charts must therefore be inline SVG or pure CSS — ECharts, Chart.js and friends are not allowed. If the generated output pulls in an external chart library, it has violated its own P0 rule; say so and ask for a fix:
+
+```
+This page loads an external chart library, which breaks the zero-dependency rule. Rewrite it as inline SVG.
+```
+
+### When not to use this skill
+
+Scenarios needing authentication, payments or backend logic are out of scope — the skill produces static single-file HTML with no server side. It cannot do those, and should not pretend to.
 
 ---
 

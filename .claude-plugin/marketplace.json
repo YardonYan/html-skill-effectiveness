@@ -1,0 +1,20 @@
+{
+  "name": "html-skill-effectiveness",
+  "description": "Generates self-contained single-file HTML artifacts — visually polished, zero dependencies, openable straight in a browser. (single-plugin marketplace)",
+  "owner": {
+    "name": "Yardon",
+    "url": "https://github.com/YardonYan"
+  },
+  "metadata": {
+    "version": "3.0"
+  },
+  "plugins": [
+    {
+      "name": "html-skill-effectiveness",
+      "source": "./",
+      "description": "Generates self-contained single-file HTML artifacts — visually polished, zero dependencies, openable straight in a browser.",
+      "version": "3.0",
+      "category": "skill"
+    }
+  ]
+}
