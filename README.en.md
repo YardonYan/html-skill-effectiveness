@@ -628,6 +628,18 @@ Scenarios needing authentication, payments or backend logic are out of scope —
 
 <a id="changelog"></a>
 
+### No card overflows, yet the whole page scrolls sideways
+
+The widest offender is usually the header: full account text, a fixed-width logo and several action buttons add up to more than the viewport. Locate the real overflow with element hit-testing and bounding-box comparison, then tighten spacing or collapse text at the breakpoints that need it. Do not hide overflow with `overflow-x: hidden`; the layout stops scrolling and the squeezed-out buttons become unreachable, which turns a layout bug into an accessibility one.
+
+### A React island inside a natively rendered page loses its state
+
+When the surrounding page re-renders with a full replace, a component holding typing progress or collapse state gets reset on every refresh. Give the island a stable id, skip it during diff updates, and update props through the component root. Unmount on page and session change; on stop, swap to a static result and clear the old timers. Never destroy and recreate the root on every character update. Verify three things: state survives consecutive refreshes, text stops growing after stop, and the instance map returns to zero after a page change.
+
+### Fullscreen transition ends with a sideways jump
+
+Locking body scroll and releasing it at the end brings back the classic desktop scrollbar, which takes real layout width and squeezes the content. Headless browsers default to overlay scrollbars, so this never reproduces locally. Reserve a stable gutter from the first frame, interpolate scroll input during the transition, and use the container width rather than the viewport width for the canvas. Verify with classic scrollbars forced on.
+
 ## Changelog
 
 ### v3.0 (2026-06-29) — Craft Discipline Revolution
