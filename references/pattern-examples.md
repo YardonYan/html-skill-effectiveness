@@ -644,3 +644,87 @@ From `23-frame-effects.html` — CSS-only animation techniques for cinematic pre
 }
 ```
 ```
+
+## 14. Extended Article & Report Recipes
+
+Recipes that combine the core 13 patterns into common delivery forms. Craft rules, state coverage and form validation still apply to every section; pitfalls collected from third-party skills are listed in `references/third-party-skill-lessons.md`.
+
+### 14.1 Concept Explainer One-Pager (extends Mode 6)
+
+**When**: a hard question ("what is X?") that deserves one readable page instead of a long text wall.
+
+**Section order**:
+1. Title + one-line definition: what it is, then what category it belongs to; max two lines.
+2. Everyday analogy mapping the abstract idea to something familiar, followed by one line on where the analogy breaks down.
+3. Three to five key points, each a short heading plus one explanation.
+4. Minimal example: a small worked case, comparison or three-step flow.
+5. Boundaries and common misconceptions: what this concept does not include.
+6. Glossary footer for terms introduced on the page.
+
+**Rules**: explain jargon on first use; never stack three unexplained terms in one paragraph; every figure must be sourced; the analogy supports the definition but does not replace it.
+
+### 14.2 Reading-Notes Archive Page
+
+**When**: keeping highlights, annotations and thoughts from a book or long article as a rereadable archive.
+
+**Pre-flight**: before drafting, check whether the material has title/author, excerpts and personal reflections. List missing items instead of guessing; if there is nothing to excerpt, report the missing material rather than filling the layout with placeholder quotes.
+
+**Section order**:
+1. Metadata: title, author, source, export time, locator id.
+2. Note counts: excerpt count, reflection count, computed from material.
+3. Synthesized recap: whole-book/whole-article review grounded in the notes.
+4. Lead: a finished-note paragraph, not a raw export.
+5. Chapter-grouped excerpts, each under a small heading, original text preserved.
+6. Personal reflections and review, visually separated from excerpts.
+7. Highlighted quotes block.
+8. Compact source/metadata block.
+
+**Rules**: excerpts stay verbatim (whitespace cleanup and HTML escaping only); synthesis and commentary are explicitly marked as reflection; do not invent plot, arguments or numbers absent from the material; keep excerpt versus reflection traceable on the page.
+
+### 14.3 Editorial / Classical Reading Doc
+
+**When**: memo, client letter, one-pager or long document meant to be read and printed, with a restrained paper feel.
+
+**Visual signature**:
+- Canvas: warm parchment `#f5f4ed`, secondary `#efeee5`; never pure `#fff`.
+- Ink: primary `#1f1d18`, secondary `#6b665b`; never pure `#000`.
+- Color: one ink-blue accent `#1B365D` only; no second accent.
+- Type: serif Chinese (Noto Serif SC / Source Han Serif SC) + serif English (Charter / Source Serif Pro); title line-height 1.1–1.3, body 1.5–1.55.
+- Forbidden: drop-shadow, blur, radius ≥8px, gradients, neon colors, rgba backgrounds (use solid hex).
+
+**Doc variants**: one-pager (logotype + title + lede + three-column points + footer metadata), long doc (cover + TOC + chapters + footnotes + colophon), letter (address + date + recipient + body + signature), memo (title + date + from/to + background + analysis + conclusion).
+
+### 14.4 Data Report Page (extends Modes 7 and 11)
+
+**When**: period sales, operations, retrieval or case data delivered to a boss or client as a printable report.
+
+**Section order**:
+1. Header: report title, time range, data source and caliber note.
+2. KPI card grid: 3–5 top metrics, each with value, period delta and mini trend.
+3. Main chart area: at least two charts (bar/line/donut/scatter), chosen to support the conclusion.
+4. Data table: excerpt of raw data, zebra striping, sticky header, max/min marked with color scale.
+5. Insight block: 3–5 conclusions tied to specific metrics or charts; no emoji stacking.
+6. Methodology fold (`<details>`): caliber, assumptions, missing-value handling.
+
+**Rules**: numbers come only from user input or computed from it; no placeholder figures; chart containers get a fixed height (outer `position: relative; height: 280px`, mini trend 40–60px); before delivery verify any claimed chart library actually ships in the package — if missing, degrade to inline SVG or plain table and note the unavailable capability; insights stay within what the data supports.
+
+### 14.5 Vertical Infographic Poster
+
+**When**: a set of points (training takeaways, event flow, checklist) for group chat or social feeds, readable without opening.
+
+**Section order**: topic tag + oversized title → numbered point blocks (one point per block: heading + one short line) → footer CTA, source or QR placeholder drawn as CSS block or inline SVG.
+
+**Rules**: default 1080×1920 vertical or A4; all content fits the target size with no in-page scroll; type and spacing guarantee no overflow; main color + neutrals + at most one accent; no placeholder copy; screenshot/export scripts use parameterized relative paths, never hardcoded absolute paths from another machine.
+
+### 14.6 One-Page Article Digest
+
+**When**: compressing a long article, report or WeChat post into a conclusion-only summary page.
+
+**Section order**:
+1. Core conclusion, one paragraph up front.
+2. Three to five points, ordered by importance.
+3. Key figures and quotes supporting the conclusion, marked as original.
+4. Applicable use or suggested action; omit if the source gives none.
+5. Source: original title, author, link and digest time.
+
+**Rules**: compression must not change the original meaning; quotes and paraphrase stay in separate blocks; do not add material absent from the source; keep the whole digest on one page — split and merge rather than producing a second screen.

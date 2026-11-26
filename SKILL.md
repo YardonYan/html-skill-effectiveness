@@ -563,6 +563,12 @@ Choose the pattern that matches the user's intent. **If requirements span multip
 - Light leak: SVG gradient overlay with `mix-blend-mode: screen`
 - Always respect `prefers-reduced-motion`; use `will-change` sparingly
 
+### Extended Recipes & Lessons
+
+The 13 modes above are skeletons. Common delivery forms that combine several modes are catalogued as recipes in `references/pattern-examples.md` §14: concept explainer one-pager, reading-notes archive page, editorial/classical reading doc, data report page, vertical infographic poster, one-page article digest.
+
+Check `references/third-party-skill-lessons.md` before delivery: pitfalls observed in third-party HTML skills — hardcoded local paths in export scripts, claimed-but-missing chart libraries, install-dir mismatches, empty excerpts from expired sessions, absolute image paths that headless browsers cannot load, unverified numbers and Chinese text overflow. Apply the corresponding checklist item to this artifact.
+
 ---
 
 ## HTML Structure Template

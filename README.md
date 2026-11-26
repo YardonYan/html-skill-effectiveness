@@ -211,6 +211,8 @@ mindmap
 | 12 | **实时工件仪表盘** | 模板 + 数据架构的可刷新仪表盘 |
 | 13 | **视觉特效** | 电影级视觉时刻 |
 
+> 上表是 13 个核心模式。概念讲解一页、读书笔记归档、典籍风文档、数据汇报页、竖版信息长图、长文一页摘要等交付形态，是多个模式的组合配方，见 `references/pattern-examples.md` §14；第三方技能实测暴露的路径、依赖、空数据等坑点，见 `references/third-party-skill-lessons.md`。
+
 ---
 
 <a id="这是什么"></a>
@@ -530,7 +532,9 @@ html-skill-effectiveness/
 │   ├── presenter-mode.md        # BroadcastChannel 双窗口演讲者模式
 │   ├── ux-laws-reference.md     # 26 条 UX 法则完整版
 │   ├── accessibility-detail.md  # WCAG 合规细节
-│   └── device-frames.md         # CSS 设备外框代码
+│   ├── device-frames.md         # CSS 设备外框代码
+│   ├── pattern-examples.md      # §14 扩展文章/报告配方（概念讲解、读书笔记、典籍文档、数据报告、信息长图、摘要）
+│   └── third-party-skill-lessons.md # 第三方技能踩坑清单与核对项
 └── docs/                        # 过程文档与演示
     ├── demo.html                # 完整模式展示
     ├── demo_en.html             # 英文展示页
